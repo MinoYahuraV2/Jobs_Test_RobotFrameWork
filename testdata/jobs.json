@@ -1,0 +1,13 @@
+{
+  "status": "PLACEHOLDER",
+  "source": "Sample copied from the Figma design. Replace with an export of the REAL database, then set status to REAL.",
+  "jobs": [
+    {"title": "Event Operations Manager", "job_type": "Full-Time", "urgent": true, "deadline": "2026-07-15", "ongoing_until_filled": false, "department": "Project / Operation", "location": "Bangkok HQ", "work_mode": "Hybrid (3 days/week office)", "posted_date": "2026-07-10", "description": "TODO"},
+    {"title": "Customer Support Officer", "job_type": "Part-Time", "urgent": true, "deadline": null, "ongoing_until_filled": true, "department": "Customer Support / Service", "location": "Chiang Mai", "work_mode": "Remote (WFH/WFA)", "posted_date": "2026-07-01", "description": "TODO"},
+    {"title": "UX/UI Designer", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Design / Creative", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
+    {"title": "Digital Marketing & Content Creator", "job_type": "Contract", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Marketing / Digital / Content", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
+    {"title": "Graphic Design", "job_type": "Internship", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Design / Creative", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
+    {"title": "Junior Frontend Engineer (React)", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Tech / IT / Developer", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
+    {"title": "Business Development Manager", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Sales / Business Development", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"}
+  ]
+}

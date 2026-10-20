@@ -1,0 +1,2 @@
+outputdir = "results"
+loglevel = "INFO"
