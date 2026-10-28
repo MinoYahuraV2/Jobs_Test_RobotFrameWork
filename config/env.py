@@ -19,3 +19,6 @@ BROWSER = _env("JOBS_BROWSER", "chrome")  # chrome | edge
 HEADLESS = _env("JOBS_HEADLESS", "false").lower() == "true"
 TIMEOUT = _env("JOBS_TIMEOUT", "10s")
 RESULT_SETTLE = _env("JOBS_RESULT_SETTLE", "1s")  # wait after search/filter/sort
+# Detail page tests check ONLY this job (keeps the run short). Empty string = check every job.
+#   $env:JOBS_DETAIL_JOB_ONLY = ""            -> every job
+DETAIL_JOB_ONLY = _env("JOBS_DETAIL_JOB_ONLY", "Tester AI")

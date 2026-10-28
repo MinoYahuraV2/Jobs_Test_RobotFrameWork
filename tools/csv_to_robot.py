@@ -132,7 +132,7 @@ ASSUMPTION_TCS = {"TC026", "TC033", "TC038", "TC039",  # depend on the AND/OR fi
                   "TC011", "TC081", "TC082", "TC084"}  # depend on the job-count display rule assumptions
 
 
-def read_cases(csv_path):
+def read_cases(csv_path, prefix="TC"):
     with open(csv_path, encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.reader(handle))
     header = [h.strip() for h in rows[0]]
@@ -142,7 +142,7 @@ def read_cases(csv_path):
     type_col = header.index("Type Test")
     cases = []
     for row in rows[1:]:
-        if not row or not row[id_col].strip().startswith("TC"):
+        if not row or not row[id_col].strip().startswith(prefix):
             continue
         cases.append({
             "id": row[id_col].strip(),
