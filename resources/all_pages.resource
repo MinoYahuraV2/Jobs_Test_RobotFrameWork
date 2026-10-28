@@ -8,3 +8,4 @@ Resource          pages/footer.resource
 Resource          pages/keyboard.resource
 Resource          pages/display_rule.resource
 Resource          pages/detail.resource
+Resource          pages/apply.resource
