@@ -11,14 +11,17 @@ Test Tags         automate
 TC018 ตรวจสอบการแสดงตัวเลือก Sort
     [Documentation]    ระบบแสดงตัวเลือกการเรียงลำดับตำแหน่งงาน
     [Tags]    TC018    sort
+    Require Sort Available
     Sort Options Should Be Displayed
 
 TC019 ตรวจสอบการเรียงลำดับแบบ Latest
     [Documentation]    ระบบเรียงตำแหน่งงานตามวันที่ประกาศล่าสุดไปเก่าสุด
     [Tags]    TC019    sort
+    Require Sort Available
     Latest Sort Should Order By Newest Posted Date
 
 TC020 ตรวจสอบการเปลี่ยนตัวเลือก Sort
     [Documentation]    ระบบปรับลำดับรายการงานตามตัวเลือกที่ผู้ใช้เลือก
     [Tags]    TC020    sort
+    Require Sort Available
     Changing Sort Option Should Update Selection

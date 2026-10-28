@@ -57,6 +57,8 @@ Card Field Should Match Data
     ...    Expected None means the element must NOT exist (e.g. no Urgent badge).
     [Arguments]    ${field}
     Require Real Job Data
+    ${has}=    Any Job Has Card Field    ${field}
+    Skip If    not $has    No job has data for "${field}" yet (empty in the CMS), so it cannot be checked.
     Require Values    ${JOB_CARD}    ${CARD}[title]    ${CARD}[${field}]
     ${titles}=    Get Displayed Titles
     FOR    ${i}    ${title}    IN ENUMERATE    @{titles}    start=1

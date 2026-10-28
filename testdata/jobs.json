@@ -1,13 +1,90 @@
 {
-  "status": "PLACEHOLDER",
-  "source": "Sample copied from the Figma design. Replace with an export of the REAL database, then set status to REAL.",
+  "status": "REAL",
+  "source": "7 jobs entered in the dev CMS (user screenshots 2026-10-28), text cross-checked with https://career-web-dev.eventpass.biz/jobs. work_mode and posted_date are empty in the CMS. Deadline year assumed 2026.",
   "jobs": [
-    {"title": "Event Operations Manager", "job_type": "Full-Time", "urgent": true, "deadline": "2026-07-15", "ongoing_until_filled": false, "department": "Project / Operation", "location": "Bangkok HQ", "work_mode": "Hybrid (3 days/week office)", "posted_date": "2026-07-10", "description": "TODO"},
-    {"title": "Customer Support Officer", "job_type": "Part-Time", "urgent": true, "deadline": null, "ongoing_until_filled": true, "department": "Customer Support / Service", "location": "Chiang Mai", "work_mode": "Remote (WFH/WFA)", "posted_date": "2026-07-01", "description": "TODO"},
-    {"title": "UX/UI Designer", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Design / Creative", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
-    {"title": "Digital Marketing & Content Creator", "job_type": "Contract", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Marketing / Digital / Content", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
-    {"title": "Graphic Design", "job_type": "Internship", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Design / Creative", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
-    {"title": "Junior Frontend Engineer (React)", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Tech / IT / Developer", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"},
-    {"title": "Business Development Manager", "job_type": "Full-Time", "urgent": false, "deadline": null, "ongoing_until_filled": false, "department": "Sales / Business Development", "location": "Bangkok HQ", "work_mode": null, "posted_date": "2026-06-24", "description": "TODO"}
+    {
+      "title": "Tester AI",
+      "job_type": "Full-Time",
+      "urgent": true,
+      "deadline": "2026-11-25",
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ"
+    },
+    {
+      "title": "Senior Frontend Engineer (React)",
+      "job_type": "Part-Time",
+      "urgent": true,
+      "deadline": "2026-11-13",
+      "ongoing_until_filled": false,
+      "department": "บริหาร (Management / Executive)",
+      "location": "อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีม..."
+    },
+    {
+      "title": "Reverted Engineer",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ"
+    },
+    {
+      "title": "Backend",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ"
+    },
+    {
+      "title": "Analysis",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ"
+    },
+    {
+      "title": "QA AI",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ"
+    },
+    {
+      "title": "Backend Engineer (Node.js)",
+      "job_type": "Part-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "บริหาร (Management / Executive)",
+      "location": "อำเภอปากเกร็ด จังหวัดนนทบุรี",
+      "work_mode": null,
+      "posted_date": null,
+      "description": "สร้าง API ความเร็วสูง"
+    }
   ]
 }

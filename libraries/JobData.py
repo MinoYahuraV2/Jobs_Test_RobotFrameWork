@@ -155,6 +155,19 @@ def expected_card_text(job, field):
     raise ValueError(f"Unknown card field: {field}")
 
 
+_FIELD_TO_DATA = {"posted": "posted_date", "work_mode": "work_mode", "ongoing": "ongoing_until_filled"}
+
+
+@keyword("Any Job Has Card Field")
+def any_job_has_card_field(field):
+    """False when no job has data for an optional field (posted, work_mode, ongoing).
+    Then a test cannot see the element on the page, so it should SKIP."""
+    key = _FIELD_TO_DATA.get(field)
+    if key is None:
+        return True
+    return any(job.get(key) for job in get_expected_jobs())
+
+
 @keyword("Posted Dates Are Newest First")
 def posted_dates_are_newest_first(texts):
     dates = []

@@ -11,4 +11,5 @@ Test Tags         automate
 TC071 ตรวจสอบการใช้งานหน้า Career - Jobs ด้วย Keyboard
     [Documentation]    ผู้ใช้สามารถเข้าถึงและใช้งานช่องค้นหา ตัวกรอง ตัวเลือก Sort และลิงก์ต่าง ๆ ด้วย Keyboard ได้ตามมาตรฐานที่กำหนด
     [Tags]    TC071    keyboard
+    Require Many Jobs
     Keyboard Navigation Should Work On Jobs Page

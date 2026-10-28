@@ -15,35 +15,42 @@ TC010 ตรวจสอบการแสดงข้อความหัว�
 
 TC011 ตรวจสอบการแสดงจำนวนตำแหน่งงาน
     [Documentation]    ระบบแสดงจำนวนตำแหน่งงานที่เปิดรับสมัครให้สอดคล้องกับข้อมูลที่แสดงจริง
-    [Tags]    TC011    search
+    [Tags]    TC011    search    assumption
+    Require Many Jobs
     Result Count Should Match Displayed Cards
 
 TC012 ตรวจสอบการแสดง Search Bar
     [Documentation]    ระบบแสดงช่องค้นหาตำแหน่งงาน พร้อม Placeholder “Search by job title or keywords...”
     [Tags]    TC012    search
+    Require Many Jobs
     Search Bar Should Be Displayed With Placeholder
 
 TC013 ตรวจสอบการค้นหาตำแหน่งงานด้วยชื่อที่มีอยู่
     [Documentation]    ระบบแสดงตำแหน่งงานที่ตรงกับชื่อที่ค้นหา
     [Tags]    TC013    search    needs-data
+    Require Many Jobs
     Search By Existing Title Should Show Match
 
 TC014 ตรวจสอบการค้นหาตำแหน่งงานด้วย Keyword
     [Documentation]    ระบบแสดงตำแหน่งงานที่ตรงกับ Keyword ที่ค้นหา
     [Tags]    TC014    search    needs-data
+    Require Many Jobs
     Search By Keyword Should Show Matches
 
 TC015 ตรวจสอบการค้นหาตำแหน่งงานที่ไม่มีอยู่
     [Documentation]    ระบบไม่แสดงรายการงานที่ไม่ตรงกับคำค้นหา และแจ้งผลลัพธ์ไม่พบข้อมูลอย่างเหมาะสม
     [Tags]    TC015    search
+    Require Many Jobs
     Search With No Match Should Show Empty State
 
 TC016 ตรวจสอบการค้นหาด้วยช่องค้นหาว่าง
     [Documentation]    ระบบแสดงรายการตำแหน่งงานทั้งหมดตามเงื่อนไข Filter ที่เลือกไว้
     [Tags]    TC016    search
+    Require Many Jobs
     Clearing Search Should Show All Jobs Again
 
 TC017 ตรวจสอบการค้นหาด้วยตัวอักษรพิมพ์เล็กและพิมพ์ใหญ่
     [Documentation]    ระบบค้นหาได้ตามเงื่อนไขที่กำหนด โดยไม่เกิดข้อผิดพลาดจากตัวพิมพ์
     [Tags]    TC017    search    needs-data
+    Require Many Jobs
     Search Should Ignore Letter Case

@@ -51,6 +51,39 @@ Require Real Job Data
     ${placeholder}=    Job Data Is Placeholder
     Skip If    ${placeholder}    testdata/jobs.json is still PLACEHOLDER. Fill it from the real database.
 
+# ---------- guards by number of jobs on the page (SKIP when the page has the wrong count) ----------
+Get Current Job Count
+    Require Values    ${JOB_CARD}
+    ${count}=    Get Element Count    ${JOB_CARD}
+    RETURN    ${count}
+
+Page Has Few Jobs
+    [Documentation]    True when the page shows fewer jobs than the Search/Filter threshold (0-5).
+    ${count}=    Get Current Job Count
+    ${few}=    Evaluate    $count < int($MIN_JOBS_FOR_SEARCH_FILTER)
+    RETURN    ${few}
+
+Require Many Jobs
+    [Documentation]    SKIP unless the page has 6+ jobs (Search bar and Filter are shown only then).
+    ${count}=    Get Current Job Count
+    Skip If    ${count} < ${MIN_JOBS_FOR_SEARCH_FILTER}    Needs ${MIN_JOBS_FOR_SEARCH_FILTER}+ jobs on the page (Search/Filter are hidden below that). Found ${count}.
+
+Require Few Jobs
+    [Documentation]    SKIP unless the page has 1-5 jobs.
+    ${count}=    Get Current Job Count
+    Skip If    ${count} < 1 or ${count} >= ${MIN_JOBS_FOR_SEARCH_FILTER}    Needs 1-5 jobs on the page. Found ${count}.
+
+Require Exactly Jobs
+    [Arguments]    ${expected}
+    ${count}=    Get Current Job Count
+    Skip If    ${count} != ${expected}    Needs exactly ${expected} jobs in the test database. Found ${count}.
+
+Require Sort Available
+    [Documentation]    SKIP when Sort is expected to be hidden (few jobs) - see SORT_HIDDEN_WHEN_FEW.
+    ${count}=    Get Current Job Count
+    ${hidden}=    Evaluate    $count < int($MIN_JOBS_FOR_SEARCH_FILTER) and bool($SORT_HIDDEN_WHEN_FEW)
+    Skip If    ${hidden}    Sort is hidden when the page has fewer than ${MIN_JOBS_FOR_SEARCH_FILTER} jobs. Found ${count}.
+
 # ---------- generic element keywords ----------
 Click Element Safe
     [Arguments]    ${locator}

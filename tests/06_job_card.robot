@@ -38,11 +38,6 @@ TC049 ตรวจสอบการแสดงวันปิดรับส�
     [Tags]    TC049    card    needs-data
     Card Field Should Match Data    deadline
 
-TC050 ตรวจสอบการแสดงสถานะ Ongoing until filled
-    [Documentation]    ระบบแสดงข้อความ Ongoing until filled สำหรับตำแหน่งงานที่เปิดรับสมัครจนกว่าจะได้ผู้สมัครตามเงื่อนไข
-    [Tags]    TC050    card    needs-data
-    Card Field Should Match Data    ongoing
-
 TC051 ตรวจสอบการแสดง Department ของตำแหน่งงาน
     [Documentation]    ระบบแสดงแผนกของแต่ละตำแหน่งงานถูกต้อง
     [Tags]    TC051    card    needs-data

@@ -17,6 +17,12 @@ Filter Panel Should Be Displayed On The Left
     END
 
 Clear Filters Button Should Be Displayed
+    [Documentation]    On the dev site the button appears only AFTER a filter is selected, so select one first.
+    Require Values    ${BTN_CLEAR_FILTERS}    ${FILTER_OPTIONS}[departments]
+    ${visible}=    Run Keyword And Return Status    Element Should Be Visible    ${BTN_CLEAR_FILTERS}
+    IF    not ${visible}
+        Select Filter Option    departments    ${FILTER_OPTIONS}[departments][0]
+    END
     Element Text Should Match    ${BTN_CLEAR_FILTERS}    ${CLEAR_FILTERS_TEXT}
 
 Filter Group Should Collapse And Expand
@@ -34,7 +40,8 @@ Select Filter Option
     [Arguments]    ${group}    ${label}
     Require Values    ${FILTER_OPTION}
     ${checkbox}=    Format Locator    ${FILTER_OPTION}    group=${group}    label=${label}
-    Click Element Safe    ${checkbox}
+    # the <input> is hidden by the page and covered by its label, so click the label (the parent of the input)
+    Click Element Safe    ${checkbox}/..
     Wait For Results
 
 Selected Filter Tag Should Be Shown
@@ -80,6 +87,10 @@ Filters From Data Should Match
 
 Filter By Label Should Match Data
     [Arguments]    ${group}    ${label}
+    Require Values    ${FILTER_OPTION}
+    ${option}=    Format Locator    ${FILTER_OPTION}    group=${group}    label=${label}
+    ${count}=    Get Element Count    ${option}
+    Skip If    ${count} == 0    Filter option "${label}" is not on the page (options come from the database).
     ${picked}=    Create List    ${label}
     ${filters}=    Create Dictionary    ${group}=${picked}
     Select Filters    ${filters}
@@ -153,6 +164,7 @@ Result Count Should Match Filtered Data
 
 Empty State Should Be Shown
     Element Should Be Shown    ${EMPTY_STATE}
+    Element Text Should Include    ${EMPTY_STATE}    ${EMPTY_STATE_TEXT}
     Job Count Should Be    0
 
 Impossible Filter Combination Should Show Empty State

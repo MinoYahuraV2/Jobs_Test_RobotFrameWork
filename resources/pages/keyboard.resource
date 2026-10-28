@@ -22,7 +22,6 @@ Keyboard Navigation Should Work On Jobs Page
     ${first_apply}=    Card Child    ${JOB_CARD}    1    ${CARD}[view_apply]
     Element Should Be Reachable By Tab    ${SEARCH_INPUT}
     Element Should Be Reachable By Tab    ${SORT_DROPDOWN}
-    Element Should Be Reachable By Tab    ${BTN_CLEAR_FILTERS}
     Element Should Be Reachable By Tab    ${first_filter}
     Element Should Be Reachable By Tab    ${first_apply}
     Element Should Be Reachable By Tab    ${FOOTER_LINK}[open_positions]
@@ -30,6 +29,8 @@ Keyboard Navigation Should Work On Jobs Page
     Element Should Be Reachable By Tab    ${first_filter}
     Press Keys    NONE    SPACE
     Checkbox Should Be Selected    ${first_filter}
+    # the Clear filters button only appears after a filter is selected
+    Element Should Be Reachable By Tab    ${BTN_CLEAR_FILTERS}
     Go To Jobs Page
     ${before}=    Get Location
     Element Should Be Reachable By Tab    ${first_apply}

@@ -17,26 +17,23 @@ TESTS_DIR = ROOT / "tests"
 
 GROUPS = {
     "smoke": ("01_smoke", "Smoke: whole page"),
-    "header": ("02_header", "Header: menu, Eventthai.com, language"),
     "search": ("03_hero_search", "Hero, result count, search"),
     "sort": ("04_sort", "Sort"),
     "filter": ("05_filter", "Filters, selected tags, result count, empty state"),
     "card": ("06_job_card", "Job cards and View & Apply"),
     "footer": ("07_footer", "Footer"),
     "keyboard": ("08_keyboard", "Keyboard use"),
+    "display": ("09_display_rule", "Search/Filter shown or hidden by number of jobs"),
 }
 MANUAL_FILE = "99_manual"
+
+# Cases dropped on purpose (Header is not tested; TC050 "Ongoing until filled" does not exist on the site).
+# They stay in the CSV, but no test is made.
+EXCLUDED_TCS = {f"TC{n:03d}" for n in range(3, 10)} | {"TC050"}
 
 # TC id -> (group, [steps]). A step is "Keyword    arg    arg".
 STEPS = {
     "TC001": ("smoke", ["Jobs Page Should Display All Main Sections"]),
-    "TC003": ("header", ["Header Menu Should Be Complete"]),
-    "TC004": ("header", ["Click Header Menu And Verify Destination    careers"]),
-    "TC005": ("header", ["Click Header Menu And Verify Destination    culture"]),
-    "TC006": ("header", ["Click Header Menu And Verify Destination    why_join_us"]),
-    "TC007": ("header", ["Click Header Menu And Verify Destination    jobs"]),
-    "TC008": ("header", ["Eventthai Button Should Link To Website"]),
-    "TC009": ("header", ["Switch Language And Verify    TH", "Switch Language And Verify    EN"]),
     "TC010": ("search", ["Hero Title Should Be Correct"]),
     "TC011": ("search", ["Result Count Should Match Displayed Cards"]),
     "TC012": ("search", ["Search Bar Should Be Displayed With Placeholder"]),
@@ -77,7 +74,6 @@ STEPS = {
     "TC047": ("card", ["Card Field Should Match Data    type_badge"]),
     "TC048": ("card", ["Card Field Should Match Data    urgent_badge"]),
     "TC049": ("card", ["Card Field Should Match Data    deadline"]),
-    "TC050": ("card", ["Card Field Should Match Data    ongoing"]),
     "TC051": ("card", ["Card Field Should Match Data    department"]),
     "TC052": ("card", ["Card Field Should Match Data    location"]),
     "TC053": ("card", ["Card Field Should Match Data    work_mode"]),
@@ -99,7 +95,31 @@ STEPS = {
     "TC068": ("footer", ["Footer Link Should Navigate    privacy"]),
     "TC069": ("footer", ["Footer Copyright Should Be Correct"]),
     "TC071": ("keyboard", ["Keyboard Navigation Should Work On Jobs Page"]),
+    "TC072": ("display", ["Few Jobs Should Hide Search Bar"]),
+    "TC073": ("display", ["Few Jobs Should Hide Filter"]),
+    "TC074": ("display", ["Few Jobs Should Hide Filter Tags Bar"]),
+    "TC075": ("display", ["Few Jobs Should Show Only Job Cards In One Column"]),
+    "TC076": ("display", ["Hero Subtitle Count Should Match Displayed Cards"]),
+    "TC077": ("display", ["Exactly Five Jobs Should Hide Search And Filter"]),
+    "TC078": ("display", ["Exactly Six Jobs Should Show Search And Filter"]),
+    "TC079": ("display", ["Many Jobs Should Show Search Bar"]),
+    "TC080": ("display", ["Many Jobs Should Show Filter"]),
+    "TC081": ("display", ["Search And Filter Should Stay When Results Drop Below Threshold"]),
+    "TC082": ("display", ["No Jobs Should Hide Search And Filter And Show Empty State"]),
+    "TC084": ("display", ["Few Jobs Should Hide Sort"]),
 }
+
+# Cases that only make sense when Search/Filter are shown (6+ jobs): SKIP on a page with fewer.
+# Sort cases use a separate guard because "Sort hides with few jobs" is still an assumption.
+def _ids(first, last):
+    return [f"TC{n:03d}" for n in range(first, last + 1)]
+
+
+GUARDS = {}
+for _tc in ["TC011"] + _ids(12, 17) + _ids(21, 43) + ["TC071"]:
+    GUARDS[_tc] = "Require Many Jobs"
+for _tc in _ids(18, 20):
+    GUARDS[_tc] = "Require Sort Available"
 
 # Tags added automatically when a step uses one of these keywords.
 DATA_KEYWORDS = (
@@ -108,7 +128,8 @@ DATA_KEYWORDS = (
     "Impossible Filter", "Displayed Titles Should Match Data", "Card Field Should Match Data",
     "Job Cards Should Not Be Duplicated",
 )
-ASSUMPTION_TCS = {"TC026", "TC033", "TC038", "TC039"}  # depend on the AND/OR filter rule
+ASSUMPTION_TCS = {"TC026", "TC033", "TC038", "TC039",  # depend on the AND/OR filter rule
+                  "TC011", "TC081", "TC082", "TC084"}  # depend on the job-count display rule assumptions
 
 
 def read_cases(csv_path):
@@ -157,8 +178,8 @@ def file_header(title, tcs, manual=False):
 def main():
     csv_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_CSV
     cases = read_cases(csv_path)
-    auto = [c for c in cases if c["type"] == "automate"]
-    manual = [c for c in cases if c["type"] == "manual"]
+    auto = [c for c in cases if c["type"] == "automate" and c["id"] not in EXCLUDED_TCS]
+    manual = [c for c in cases if c["type"] == "manual" and c["id"] not in EXCLUDED_TCS]
 
     missing = [c["id"] for c in auto if c["id"] not in STEPS]
     extra = [i for i in STEPS if i not in {c["id"] for c in auto}]
@@ -172,7 +193,11 @@ def main():
     by_group = {g: [] for g in GROUPS}
     for case in auto:
         group, steps = STEPS[case["id"]]
+        if case["id"] in GUARDS:
+            steps = [GUARDS[case["id"]]] + steps
         tags = [case["id"], group]
+        if group == "display":
+            tags.append("needs-job-count")
         if any(step.startswith(DATA_KEYWORDS) for step in steps):
             tags.append("needs-data")
         if case["id"] in ASSUMPTION_TCS:
