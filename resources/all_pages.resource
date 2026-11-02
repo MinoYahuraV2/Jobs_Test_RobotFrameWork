@@ -15,3 +15,4 @@ Resource          pages/profile.resource
 Resource          pages/email_head.resource
 Resource          pages/email_candidate.resource
 Resource          pages/jobs_admin.resource
+Resource          pages/job_new.resource
