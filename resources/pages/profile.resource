@@ -189,7 +189,7 @@ Info Labels Should Match
 Consent Should Match The Application Time
     [Documentation]    Read in the browser: the downloaded page does not always carry the consent time.
     ${consent}=    Execute Javascript
-    ...    const l = [...document.querySelectorAll('label')].find(x => x.textContent.trim() === 'Consent Form'); return l.nextElementSibling.innerText.replace(/\s+/g, ' ').trim();
+    ...    const l = [...document.querySelectorAll('label')].find(x => x.textContent.trim() === 'Consent Form'); return l.nextElementSibling.innerText.replace(/\\s+/g, ' ').trim();
     ${applied}=    Execute Javascript
     ...    const s = [...document.querySelectorAll('span')].find(x => x.textContent.trim().startsWith('วันที่สมัคร:')); return s.textContent.replace('วันที่สมัคร:', '').trim();
     Should Start With    ${consent}    ยินยอมแล้ว

@@ -77,7 +77,7 @@ Refresh Should Keep The Same Candidate Draft
 # ================= form =================
 Candidate Form Labels Should Match
     ${labels}=    Execute Javascript
-    ...    return [...document.querySelectorAll('#cms-content form label')].map(l => l.textContent.replace(/\s+/g, ' ').trim());
+    ...    return [...document.querySelectorAll('#cms-content form label')].map(l => l.textContent.replace(/\\s+/g, ' ').trim());
     Lists Should Be Equal    ${labels}    ${EC_LABEL_TEXTS}
 
 Template List Should Start With Interview

@@ -206,3 +206,13 @@ robot tests\email_candidate
 ```powershell
 robot tests\jobs_admin
 ```
+
+
+## เทสฟอร์มเพิ่มตำแหน่งใหม่ของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\job_new\` (52 เคส จาก `data\testcases_job_new.csv`) สร้างด้วย `python tools\csv_to_robot_job_new.py`
+เทสไม่บันทึกตำแหน่ง (ตำแหน่งที่บันทึกขึ้นหน้า Public และลบจาก CMS ไม่ได้) เคสที่ต้องบันทึกจริงเป็น manual
+
+```powershell
+robot tests\job_new
+```

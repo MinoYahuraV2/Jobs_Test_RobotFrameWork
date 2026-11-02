@@ -133,7 +133,7 @@ Form Section Should Be Titled
 
 Form Labels Should Match
     ${labels}=    Execute Javascript
-    ...    return [...document.querySelectorAll('#cms-content form label')].map(l => l.textContent.replace(/\s+/g, ' ').trim());
+    ...    return [...document.querySelectorAll('#cms-content form label')].map(l => l.textContent.replace(/\\s+/g, ' ').trim());
     Lists Should Be Equal    ${labels}    ${ED_LABEL_TEXTS}
 
 Recipient Boxes Should Start Empty
