@@ -146,3 +146,13 @@ python tools\csv_to_robot.py
 
 - ทุกเคสถูก SKIP: ยังไม่ได้ตั้ง `JOBS_BASE_URL` หรือ locator/ข้อมูลยังเป็น `TODO` ดูเหตุผลใน `log.html`
 - `robot` ล้มด้วยข้อความ `unknown encoding: utf-8:backslashreplace`: ตั้ง `$env:PYTHONIOENCODING = "utf-8"` ก่อนรัน
+
+
+## เทสหน้า Login ของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\login\` (56 เคส จาก `data\testcases_login.csv`) สร้างด้วย `python tools\csv_to_robot_login.py`
+บัญชีทดสอบเป็นความลับ: คัดลอก `config\secrets.local.env.example` เป็น `config\secrets.local.env` แล้วใส่อีเมลและรหัสผ่าน (ไฟล์นี้ไม่ขึ้น GitHub) ถ้าไม่มีไฟล์ เคสที่ต้องใช้บัญชีจะ SKIP
+
+```powershell
+robot tests\login
+```
