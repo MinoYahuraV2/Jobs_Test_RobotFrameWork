@@ -42,3 +42,13 @@ Figma ต่างจากเว็บ dev (รอทีมยืนยัน �
 | Read Privacy Notice | ลิงก์สีน้ำเงิน | ข้อความธรรมดา กดไม่ได้ |
 
 มีบนเว็บ dev แต่ไม่มีใน Figma: หน้า Review Application, ช่องกรอกเพิ่มเมื่อเลือก อื่น ๆ, ข้อความแจ้งเตือนใต้ช่อง
+
+
+## หน้า Login ของ CMS (/admin/login) — branch `feature/admin-login-tests`
+- 56 เคส (`data/testcases_login.csv`): automate 52, manual 4 สร้างไฟล์ด้วย `python tools/csv_to_robot_login.py`
+- ข้ามส่วน "ลืมรหัสผ่าน" ตามที่สั่ง (dev ยังไม่ทำ) ไม่มีเคสของส่วนนี้
+- บัญชีทดสอบอยู่ใน `config/secrets.local.env` (ไม่ขึ้น GitHub) ถ้าไม่มีไฟล์นี้ เคสที่ติด tag `needs-account` จะ SKIP
+- ผลรันก่อนหน้า: ผ่าน 51, พัง 1, ข้าม 4 (manual)
+- LG022 เคยพัง (อีเมลไม่มีในระบบขึ้นข้อความต่างจากรหัสผ่านผิด ทำให้เดาได้ว่าอีเมลไหนมีบัญชี) dev แก้แล้ว รันซ้ำเคสเดียวผ่าน ยังไม่ได้รันทั้งชุดซ้ำ
+
+- LG036: ทีมยืนยันแล้วว่าหลัง login ไป Dashboard เสมอ แม้ลิงก์มี ?next= เคสนี้จึงตรวจว่าไป Dashboard (ผ่าน)
