@@ -186,3 +186,13 @@ robot tests\profile
 ```powershell
 robot tests\email_head
 ```
+
+
+## เทสหน้าร่างอีเมลถึงผู้สมัครของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\email_candidate\` (51 เคส จาก `data\testcases_email_candidate.csv`) สร้างด้วย `python tools\csv_to_robot_email_candidate.py`
+กติกาเดียวกับหน้าส่งให้ Head: เทสไม่ส่งอีเมลจริง เคสที่ต้องส่งจริงเป็น manual
+
+```powershell
+robot tests\email_candidate
+```
