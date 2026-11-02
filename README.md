@@ -156,3 +156,14 @@ python tools\csv_to_robot.py
 ```powershell
 robot tests\login
 ```
+
+## เทสหน้า Dashboard ของ CMS
+
+อยู่ใน `tests\dashboard\` (77 เคส จาก `data\testcases_dashboard.csv`) สร้างด้วย `python tools\csv_to_robot_dashboard.py`
+ต้องใช้บัญชีเดียวกับเทส Login (`config\secrets.local.env`) เทสอ่านตัวเลขและแถวจากหน้าเว็บเอง แล้วเทียบกันเองและเทียบกับไฟล์ Export จึงไม่ผูกกับข้อมูลผู้สมัครในฐานข้อมูล
+ไฟล์ที่ดาวน์โหลดจากปุ่ม Export Report เก็บที่ `results\downloads\` (ไม่ขึ้น GitHub)
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+robot --outputdir results\dashboard tests\dashboard
+```
