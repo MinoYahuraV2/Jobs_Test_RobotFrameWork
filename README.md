@@ -167,3 +167,12 @@ robot tests\login
 $env:PYTHONIOENCODING="utf-8"
 robot --outputdir results\dashboard tests\dashboard
 ```
+
+## เทสหน้าโปรไฟล์ผู้สมัครของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\profile\` (73 เคส จาก `data\testcases_profile.csv`) สร้างด้วย `python tools\csv_to_robot_profile.py`
+ใช้บัญชีทดสอบเดียวกับหน้า Login เทสอ่านข้อมูลอย่างเดียว ไม่บันทึกสถานะและไม่ส่งอีเมล (เคสที่ต้องทำจริงเป็น manual)
+
+```powershell
+robot tests\profile
+```

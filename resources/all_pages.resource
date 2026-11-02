@@ -11,3 +11,4 @@ Resource          pages/detail.resource
 Resource          pages/apply.resource
 Resource          pages/login.resource
 Resource          pages/dashboard.resource
+Resource          pages/profile.resource
