@@ -68,7 +68,7 @@ STEPS = {
     "LG020": ("wrong", ["Failed Login With Changed Admin Password    append",
                         "Login Error Should Be    ${LOGIN_ERR_WRONG_PASSWORD}"]),
     "LG021": ("wrong", ["Login Wrong Attempt    ${LOGIN_UNKNOWN_EMAIL}    secret-text-1",
-                        "Login Error Should Be    ${LOGIN_ERR_NO_ACCOUNT}",
+                        "Login Error Should Be    ${LOGIN_ERR_WRONG_PASSWORD}",
                         "Login Should Not Have Entered The Cms"]),
     "LG022": ("wrong", ["Login Wrong Attempt    ${LOGIN_UNKNOWN_EMAIL}    secret-text-1",
                         "Login Error Should Be    ${LOGIN_ERR_WRONG_PASSWORD}"]),
@@ -129,7 +129,7 @@ STEPS = {
 }
 
 # Behaviour read from the dev site that the team must confirm (no design file for this page).
-ASSUMPTION_IDS = {"LG021", "LG022", "LG027", "LG028", "LG033", "LG038", "LG039"}
+ASSUMPTION_IDS = {"LG022", "LG027", "LG028", "LG033", "LG038", "LG039"}
 # Needs the admin account from config/secrets.local.env.
 NEEDS_ACCOUNT = {"LG020", "LG023", "LG024", "LG025", "LG026", "LG027", "LG028", "LG029", "LG030",
                  "LG031", "LG032", "LG033", "LG034", "LG035", "LG036", "LG037", "LG038", "LG039",

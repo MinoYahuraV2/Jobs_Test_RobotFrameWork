@@ -433,7 +433,7 @@ Clear Button In The Empty State Should Reset Everything
     ${all}=    Total Applicants
     Filter Applicants    name=${DASH_NO_MATCH_SEARCH}
     Empty State Should Be Shown
-    Click Element    ${DASH_CLEAR_FILTERS_EMPTY}
+    Click In The Middle Of The Screen    ${DASH_CLEAR_FILTERS_EMPTY}
     Wait Until Keyword Succeeds    15s    0.5s    Filters Should Be Cleared    ${all}
 
 Filters Should Survive A Refresh
