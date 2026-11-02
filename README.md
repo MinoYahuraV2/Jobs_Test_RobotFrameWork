@@ -216,3 +216,13 @@ robot tests\jobs_admin
 ```powershell
 robot tests\job_new
 ```
+
+
+## เทสหน้าแก้ไขตำแหน่งของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\job_edit\` (66 เคส จาก `data\testcases_job_edit.csv`) สร้างด้วย `python tools\csv_to_robot_job_edit.py`
+เทสไม่บันทึกตำแหน่ง (การบันทึกเปลี่ยนหน้า Public ทันที) เคสที่ต้องบันทึกจริงเป็น manual
+
+```powershell
+robot tests\job_edit
+```

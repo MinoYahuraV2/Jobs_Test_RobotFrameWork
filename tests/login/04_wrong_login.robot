@@ -15,10 +15,10 @@ LG020 ตรวจสอบการเข้าสู่ระบบด้ว�
     Login Error Should Be    ${LOGIN_ERR_WRONG_PASSWORD}
 
 LG021 ตรวจสอบการเข้าสู่ระบบด้วยอีเมลที่ไม่มีในระบบ
-    [Documentation]    แสดงข้อความ "ไม่พบบัญชีผู้ใช้นี้ในระบบ" และยังอยู่ที่หน้า Login (ข้อความตามที่เห็นบน dev)
-    [Tags]    LG021    wrong    assumption
+    [Documentation]    แสดงข้อความ "อีเมลหรือรหัสผ่านไม่ถูกต้อง" และยังอยู่ที่หน้า Login (dev แก้แล้วให้ข้อความเหมือนกรณีรหัสผ่านผิด ดู LG022)
+    [Tags]    LG021    wrong
     Login Wrong Attempt    ${LOGIN_UNKNOWN_EMAIL}    secret-text-1
-    Login Error Should Be    ${LOGIN_ERR_NO_ACCOUNT}
+    Login Error Should Be    ${LOGIN_ERR_WRONG_PASSWORD}
     Login Should Not Have Entered The Cms
 
 LG022 ตรวจสอบข้อความผิดพลาดของอีเมลที่ไม่มีในระบบ ต้องไม่บอกว่าไม่มีอีเมลนี้
