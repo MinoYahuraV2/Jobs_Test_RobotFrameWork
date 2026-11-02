@@ -1,0 +1,143 @@
+"""Build the CMS CMS job management .robot files from data/testcases_jobs_admin.csv.
+
+Run:  python tools/csv_to_robot_jobs_admin.py [path/to/testcases_jobs_admin.csv]
+
+* Same idea as tools/csv_to_robot_dashboard.py: the CSV is the source of truth for ID, description,
+  expected result and type. STEPS maps each ID to its keywords and file group.
+* Writes tests/jobs_admin/*.robot (the other test folders are not touched).
+* Do not hand-edit the generated files; edit STEPS or resources/pages/jobs_admin.resource instead.
+"""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from csv_to_robot import read_cases, render_test  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_CSV = ROOT / "data" / "testcases_jobs_admin.csv"
+OUT_DIR = ROOT / "tests" / "jobs_admin"
+PREFIX = "JA"
+
+GROUPS = {
+    "open": ("01_open", "Open the page, top of the page and header buttons"),
+    "summary": ("02_summary", "Stat cards and result count"),
+    "table": ("03_table", "Job table, status rules and public page"),
+    "filter": ("04_filter", "Search and filters"),
+    "layout": ("05_keyboard_layout", "Keyboard and screen sizes"),
+}
+MANUAL_FILE = "99_manual"
+
+# JA id -> (group, [steps])
+STEPS = {
+    "JA001": ("open", ["Jobs Admin Should Open From The Menu"]),
+    "JA002": ("open", ["Jobs Admin Heading Should Match"]),
+    "JA003": ("open", ["Top Bar Should Show Brand And User", "Menu Texts Should Match", "Only Jobs Menu Should Be Marked Current"]),
+    "JA004": ("open", ["Jobs Admin Should Ask For Login When Logged Out"]),
+    "JA005": ("open", ["Header Links Should Match"]),
+    "JA006": ("open", ["New Job Link Should Open The New Job Page"]),
+    "JA007": ("open", ["Refresh Should Keep The Job List"]),
+    "JA008": ("summary", ["Stat Cards Should Show Labels And Whole Numbers"]),
+    "JA009": ("summary", ["Stat Cards Should Match The Rows"]),
+    "JA010": ("summary", ["Result Count Should Match The Rows"]),
+    "JA011": ("table", ["Table Section Should Be Titled"]),
+    "JA012": ("table", ["Job Table Headings Should Match"]),
+    "JA013": ("table", ["Every Job Should Pass    complete"]),
+    "JA014": ("table", ["Every Job Should Pass    status_vs_date"]),
+    "JA015": ("table", ["Every Job Should Pass    status_note"]),
+    "JA016": ("table", ["Every Job Should Pass    switch"]),
+    "JA017": ("table", ["Every Job Should Pass    ids"]),
+    "JA018": ("table", ["Every Job Should Pass    newest_first"]),
+    "JA019": ("table", ["Public Jobs Should Match The Open Rows"]),
+    "JA020": ("table", ["Edit Link Should Open That Job"]),
+    "JA021": ("table", ["Every Edit Link Should Open A Job"]),
+    "JA022": ("filter", ["Filter Boxes Should Match"]),
+    "JA023": ("filter", ["Filter Lists Should Match"]),
+    "JA024": ("filter", ["Filters Should Start Empty"]),
+    "JA025": ("filter", ["Each Word Of Each Title Should Be Found"]),
+    "JA026": ("filter", ["Title Search Should Ignore Case And Spaces"]),
+    "JA027": ("filter", ["Job Search With No Match Should Show The Empty State"]),
+    "JA028": ("filter", ["Each Department Should Filter Its Jobs"]),
+    "JA029": ("filter", ["Each Type Should Filter Its Jobs"]),
+    "JA030": ("filter", ["Each Status Should Filter Its Jobs"]),
+    "JA031": ("filter", ["Start Date Should Filter From That Day"]),
+    "JA032": ("filter", ["End Date Should Filter Up To That Day"]),
+    "JA033": ("filter", ["One Day Range Should Include That Day"]),
+    "JA034": ("filter", ["Reversed Dates Should Show The Empty State"]),
+    "JA035": ("filter", ["Date Box Should Add Slashes And Ignore Letters"]),
+    "JA036": ("filter", ["Impossible Date Should Not Filter"]),
+    "JA037": ("filter", ["Filters Should Work Together"]),
+    "JA038": ("filter", ["Clear Button Should Reset The List And Every Filter"]),
+    "JA039": ("filter", ["Clear Button Should Empty The Search Box"]),
+    "JA040": ("filter", ["Clear Link In The Empty State Should Reset The List"]),
+    "JA041": ("filter", ["Script Text In Search Should Be Harmless"]),
+    "JA042": ("filter", ["Job Filters Should Survive A Refresh"]),
+    "JA043": ("filter", ["A Link With A Filter In It Should Open Filtered"]),
+    "JA044": ("layout", ["Jobs Admin Tab Order Should Follow The Page"]),
+    "JA045": ("layout", ["Stat Cards Should Be Laid Out    3"]),
+    "JA046": ("layout", ["Set Window Size    768    1024", "Sleep    ${RESULT_SETTLE}", "Stat Cards Should Be Laid Out    3", "Page Should Not Scroll Sideways    768    1024"]),
+    "JA047": ("layout", ["Phone Layout Should Stack The Cards And Scroll The Table Inside"]),
+}
+
+# Behaviour read from the dev site (or an expectation of mine) that the team must confirm.
+ASSUMPTION_IDS = {"JA018", "JA036", "JA042", "JA043", "JA044", "JA045", "JA046", "JA047"}
+
+
+def file_header(title, ids, manual=False):
+    out = ["*** Settings ***",
+           f"Documentation     {title} ({ids[0]} to {ids[-1]}). GENERATED by tools/csv_to_robot_jobs_admin.py - do not edit."]
+    if manual:
+        out += ["Test Tags         manual"]
+    else:
+        out += ["Resource          ../../resources/all_pages.resource",
+                "Suite Setup       Open Jobs Admin Browser",
+                "Suite Teardown    Close All Browsers",
+                "Test Setup        Open Jobs Admin",
+                "Test Tags         automate    jobs-admin    needs-account"]
+    return "\n".join(out) + "\n\n\n*** Test Cases ***\n"
+
+
+def main():
+    csv_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_CSV
+    cases = read_cases(csv_path, PREFIX)
+    auto = [c for c in cases if c["type"] == "automate"]
+    manual = [c for c in cases if c["type"] == "manual"]
+
+    missing = [c["id"] for c in auto if c["id"] not in STEPS]
+    extra = [i for i in STEPS if i not in {c["id"] for c in auto}]
+    if missing or extra:
+        sys.exit(f"STEPS mismatch. In CSV as automate but no steps: {missing}. Steps but not automate in CSV: {extra}")
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for old in OUT_DIR.glob("*.robot"):
+        old.unlink()
+
+    by_group = {g: [] for g in GROUPS}
+    for case in auto:
+        group, steps = STEPS[case["id"]]
+        tags = [case["id"], group]
+        if case["id"] in ASSUMPTION_IDS:
+            tags.append("assumption")
+        by_group[group].append(render_test(case, steps, tags))
+
+    for group, (filename, title) in GROUPS.items():
+        tests = by_group[group]
+        ids = [t.split()[0] for t in tests]
+        body = file_header(title, ids) + "\n\n".join(tests) + "\n"
+        (OUT_DIR / f"{filename}.robot").write_text(body, encoding="utf-8", newline="\n")
+
+    manual_tests = [
+        render_test(c, ["Skip    Manual case: run by hand and record the result in the CSV"], [c["id"], "manual"])
+        for c in manual
+    ]
+    ids = [c["id"] for c in manual]
+    body = file_header("Manual cases (always skipped)", ids, manual=True) + "\n\n".join(manual_tests) + "\n"
+    (OUT_DIR / f"{MANUAL_FILE}.robot").write_text(body, encoding="utf-8", newline="\n")
+
+    print(f"automate: {len(auto)}  manual: {len(manual)}  total: {len(cases)}")
+    for group, (filename, _) in GROUPS.items():
+        print(f"  jobs_admin/{filename}.robot  {len(by_group[group])}")
+    print(f"  jobs_admin/{MANUAL_FILE}.robot  {len(manual)}")
+
+
+if __name__ == "__main__":
+    main()
