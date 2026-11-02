@@ -176,3 +176,13 @@ robot --outputdir results\dashboard tests\dashboard
 ```powershell
 robot tests\profile
 ```
+
+
+## เทสหน้าร่างอีเมลส่งให้ Head ของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\email_head\` (50 เคส จาก `data\testcases_email_head.csv`) สร้างด้วย `python tools\csv_to_robot_email_head.py`
+เทสไม่ส่งอีเมลจริง: เคสที่กดปุ่มส่งใช้ TO ที่เป็นอีเมลไม่ได้ ระบบต้องปฏิเสธ และเทสตรวจว่าสถานะผู้สมัครไม่เปลี่ยน เคสที่ต้องส่งจริงเป็น manual
+
+```powershell
+robot tests\email_head
+```
