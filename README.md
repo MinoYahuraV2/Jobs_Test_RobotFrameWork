@@ -196,3 +196,13 @@ robot tests\email_head
 ```powershell
 robot tests\email_candidate
 ```
+
+
+## เทสหน้าจัดการตำแหน่งงานของ CMS
+
+ไฟล์เทสอยู่ที่ `tests\jobs_admin\` (55 เคส จาก `data\testcases_jobs_admin.csv`) สร้างด้วย `python tools\csv_to_robot_jobs_admin.py`
+เทสไม่กดสวิตช์ Manual Toggle และไม่บันทึกฟอร์ม เพราะกระทบหน้า Public เคสที่ต้องทำจริงเป็น manual
+
+```powershell
+robot tests\jobs_admin
+```
