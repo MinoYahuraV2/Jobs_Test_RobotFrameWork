@@ -18,6 +18,13 @@ BODY_START = "เรียน Head ทีมที่เกี่ยวข้อ
 BODY_END = "ขอบคุณครับ/ค่ะ\nทีม HR EventThai"
 STATUS_AFTER = "รอ Head Review"
 TARGET_STATUS = "pending-head-review"
+CAND_TITLE_FORMAT = "ร่างอีเมลถึงผู้สมัคร: {name} | EventPass Careers CMS"
+CAND_SUBJECT_FORMAT = "นัดหมายสัมภาษณ์ตำแหน่ง {job}"
+CAND_BODY_PHRASE = "นัดหมายสัมภาษณ์เพิ่มเติม"
+CAND_STATUS_AFTER = "ติดต่อกลับแล้ว"
+CAND_TARGET_STATUS = "contacted"
+CAND_TEMPLATES = [("candidate-interview", "นัดสัมภาษณ์"), ("candidate-request-info", "ขอข้อมูลเพิ่มเติม"),
+                  ("candidate-passed", "แจ้งผ่านการพิจารณา"), ("candidate-rejected", "แจ้งไม่ผ่านการพิจารณา")]
 
 
 def _driver():
@@ -51,6 +58,10 @@ const parse = (path, html, status) => {
   const src = [...doc.querySelectorAll('div')].find(d => d.children.length === 0 && text(d).startsWith('Source: Application Form'));
   out.attach_name = src && src.previousElementSibling ? text(src.previousElementSibling) : '';
   out.attach_type = src && src.nextElementSibling ? text(src.nextElementSibling) : '';
+  out.has_attach = [...doc.querySelectorAll('h3')].some(h => text(h) === 'ไฟล์แนบจากใบสมัคร');
+  const tpl = doc.getElementById('emailDraftTemplate');
+  out.template = tpl ? tpl.value : null;
+  out.template_options = tpl ? [...tpl.options].map(o => [o.value, text(o)]) : null;
   return out;
 };
 Promise.all(arguments[0].map(p => fetch(p + '/email?type=' + kind, {credentials: 'same-origin'})
@@ -166,6 +177,44 @@ def draft_problems(check, drafts, profiles):
         elif check == "target_status":
             if d["target"] != TARGET_STATUS:
                 problems.append(f"{who}: the form sends status '{d['target']}', expected '{TARGET_STATUS}'")
+        elif check == "cand_title":
+            if d["title"] != CAND_TITLE_FORMAT.format(name=name):
+                problems.append(f"{who}: title is '{d['title']}'")
+        elif check == "cand_subject":
+            wanted = CAND_SUBJECT_FORMAT.format(job=p["job"])
+            if d["subject"] != wanted:
+                problems.append(f"{who}: subject is '{d['subject']}', expected '{wanted}'")
+        elif check == "cand_body":
+            body = d["body"].strip().replace("\r\n", "\n")
+            if not body.startswith(f"เรียน คุณ{name}"):
+                problems.append(f"{who}: body does not start with 'เรียน คุณ{name}'")
+            if p["job"] not in body:
+                problems.append(f"{who}: body does not name the position '{p['job']}'")
+            if CAND_BODY_PHRASE not in body:
+                problems.append(f"{who}: body has no interview sentence")
+            if not body.endswith(BODY_END):
+                problems.append(f"{who}: body does not end with the HR signature")
+        elif check == "cand_recipients":
+            if d["to"] != p["email"] or d["cc"]:
+                problems.append(f"{who}: TO is '{d['to']}' (applicant email '{p['email']}'), CC is '{d['cc']}'")
+        elif check == "cand_info":
+            info = d["info"]
+            for label, shown, wanted in (("type", info["type"], "Candidate Email"), ("name", info["name"], name),
+                                         ("position", info["job"], p["job"]), ("email", info["email"], p["email"]),
+                                         ("CV", info["cv"], p["cv"])):
+                if shown != wanted:
+                    problems.append(f"{who}: info panel {label} is '{shown}', expected '{wanted}'")
+        elif check == "cand_status":
+            if d["status_after"] != CAND_STATUS_AFTER or d["target"] != CAND_TARGET_STATUS:
+                problems.append(f"{who}: status after sending '{d['status_after']}' / form value '{d['target']}'")
+            if not d["checked"] or d["update"] != "true":
+                problems.append(f"{who}: auto update is not on by default (checked={d['checked']}, hidden={d['update']})")
+        elif check == "cand_template":
+            if d["template"] != CAND_TEMPLATES[0][0] or [tuple(o) for o in d["template_options"] or []] != CAND_TEMPLATES:
+                problems.append(f"{who}: template list is {d['template_options']}, selected {d['template']}")
+        elif check == "cand_no_attachments":
+            if d["has_attach"]:
+                problems.append(f"{who}: the candidate email shows an attachments section")
         else:
             raise AssertionError(f"Unknown draft check: {check}")
     return problems

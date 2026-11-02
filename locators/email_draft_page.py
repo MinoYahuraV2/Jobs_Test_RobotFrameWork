@@ -16,6 +16,7 @@ ED_SEND_BUTTONS = "css:#cms-content button[type='submit']"
 
 # Form
 ED_FORM_SECTION = "xpath://form[@id='emailDraftForm']//section[.//h2[normalize-space()='รายละเอียดร่างอีเมล']]"
+ED_TEMPLATE = "id:emailDraftTemplate"
 ED_TO = "id:emailDraftTo"
 ED_CC = "id:emailDraftCc"
 ED_SUBJECT = "id:emailDraftSubject"
