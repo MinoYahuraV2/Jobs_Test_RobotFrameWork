@@ -69,7 +69,7 @@ Login As Admin And Reach Dashboard
 
 Dashboard Should Be Open
     Wait Until Location Contains    ${LOGIN_DASHBOARD_PATH}    timeout=20s
-    Title Should Be    ${LOGIN_DASHBOARD_TITLE}
+    Wait Until Keyword Succeeds    15s    0.5s    Title Should Be    ${LOGIN_DASHBOARD_TITLE}
     Wait Until Element Is Visible    ${LOGIN_LOGOUT_BUTTON}
 
 Logout From Cms

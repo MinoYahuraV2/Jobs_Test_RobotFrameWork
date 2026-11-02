@@ -227,7 +227,14 @@ Preview Should Show The CV
     ${frame_title}=    Get Element Attribute    ${PF_DIALOG_FRAME}    title
     Should Contain    ${frame_title}    ${profile}[cv]
     ${src}=    Get Element Attribute    ${PF_DIALOG_FRAME}    src
-    Should End With    ${src}    ${profile}[cv]
+    ${stored}=    Stored File Name    ${profile}[cv]
+    Should End With    ${src}    ${stored}
+
+Stored File Name
+    [Documentation]    The site keeps the file under a cleaned name: spaces and brackets are removed from the web address.
+    [Arguments]    ${name}
+    ${stored}=    Evaluate    __import__('re').sub(r'[^A-Za-z0-9._-]', '', $name)
+    RETURN    ${stored}
 
 Preview Download Link Should Match The Frame
     ${profile}=    Current Applicant

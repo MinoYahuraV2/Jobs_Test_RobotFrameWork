@@ -12,3 +12,4 @@ Resource          pages/apply.resource
 Resource          pages/login.resource
 Resource          pages/dashboard.resource
 Resource          pages/profile.resource
+Resource          pages/email_head.resource
