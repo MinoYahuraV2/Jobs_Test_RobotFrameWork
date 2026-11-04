@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ```
 data\testcases.csv        ไฟล์ Test Case ต้นทาง
 tests\                    ไฟล์ .robot (สร้างจาก CSV อย่าแก้ด้วยมือ)
-resources\                keyword แยกตามหน้า (filters, job_cards, footer ...)
+resources\                keyword แยกตามหน้า (filters, job_cards ...)
 locators\jobs_page.py     locator ทุกตัว (เติมจากเว็บ dev แล้ว ยกเว้นที่เป็น TODO)
 testdata\expected.py      ข้อความที่คาดหวัง (จาก Figma) และลิงก์ปลายทาง
 testdata\jobs.json        ข้อมูลงานที่คาดหวัง (ตอนนี้เป็นตัวอย่างจาก Figma)
@@ -39,7 +39,6 @@ tools\list_todo.py        แสดงรายการที่ยังเป
 | 04_sort | TC018-020 | 3 |
 | 05_filter | TC021-043 | 23 |
 | 06_job_card | TC044-057 | 14 |
-| 07_footer | TC058-069 | 12 |
 | 08_keyboard | TC071 | 1 |
 | 09_display_rule | TC072-082, TC084 | 12 |
 | 99_manual (ข้ามเสมอ) | TC002, TC070, TC083 | 3 |
@@ -139,7 +138,6 @@ python tools\csv_to_robot.py
 - Filter ในกลุ่มเดียวกันเป็น "หรือ" และข้ามกลุ่มเป็น "และ" (ตั้งใน `libraries\JobData.py` กระทบ TC026, 033, 038, 039)
 - ช่องค้นหา: ผลต้อง "รวม" งานที่ชื่อตรงกับคำค้น (เว็บอาจค้นกว้างกว่าชื่องาน)
 - Description อ่านจากข้อมูล ไม่ฝังไว้ใน test (เปลี่ยนข้อความใน DB แล้วไม่ต้องแก้ test)
-- ปีลิขสิทธิ์ใน Footer ใช้ตามปีปัจจุบัน (ตั้งใน `FOOTER_COPYRIGHT` ที่ `testdata\expected.py`)
 - Sort บนเว็บ dev เป็น `<select>` ตัวเลือกคือ `Sort: Latest`, `Sort: Oldest`, `Sort: Title (A-Z)` (ค่า `latest`, `oldest`, `title_asc`) ตั้งใน `SORT_OPTION_LABELS` ของ `testdata\expected.py`
 
 ## แก้ปัญหา

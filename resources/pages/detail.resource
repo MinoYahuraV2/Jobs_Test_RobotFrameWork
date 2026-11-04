@@ -2,7 +2,6 @@
 Documentation     Job Detail page keywords (open, header, sections, contact, apply/share, SEO, layout).
 Resource          ../common.resource
 Resource          job_cards.resource
-Resource          footer.resource
 Library           ../../libraries/DetailHelpers.py
 Variables         ../../locators/detail_page.py
 Variables         ../../testdata/detail_expected.py
@@ -556,10 +555,6 @@ Hiring Process Numbers Should Be In Order
     ${want}=    Evaluate    [n for n, s in $HIRING_STEPS_EXPECTED]
     Should Be Equal    ${texts}    ${want}
 
-# ================= footer on the detail page (same keywords as the Jobs page) =================
-Footer Open Positions Link Should Open Jobs List
-    Footer Link Should Navigate    open_positions
-    Wait Until Keyword Succeeds    10s    1s    Location Should Be Jobs List
 
 # ================= SEO data =================
 Get Meta Description

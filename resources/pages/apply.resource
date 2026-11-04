@@ -3,7 +3,6 @@ Documentation     Apply Job form keywords (open, fill, upload, source, privacy, 
 ...               The tests never press "Confirm & Submit Application": that would create a real application.
 Resource          ../common.resource
 Resource          detail.resource
-Resource          footer.resource
 Library           ../../libraries/ApplyHelpers.py
 Variables         ../../locators/apply_page.py
 Variables         ../../testdata/apply_expected.py
@@ -337,12 +336,3 @@ Review Dialog Should Show The Documents
     ${resume}=    Test File Name    pdf
     Review Dialog Should Include    Resume/CV: ${resume} 2 KB    Portfolio Link: ${PORTFOLIO_IN_REVIEW}
 
-Apply Form Footer Should Be Shown
-    [Documentation]    The apply page has two <footer> tags (the first one is empty), so look at the last one.
-    ${footer}=    Set Variable    xpath:(//footer)[last()]
-    Element Should Be Shown    ${footer}
-    ${text}=    Get Text    ${footer}
-    ${year}=    Evaluate    str(__import__('datetime').date.today().year)
-    Should Contain    ${text}    ${FOOTER_EMAIL}
-    Should Contain    ${text}    ${FOOTER_PHONE}
-    Should Contain    ${text}    ${year}

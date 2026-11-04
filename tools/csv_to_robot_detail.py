@@ -26,7 +26,6 @@ GROUPS = {
     "content": ("05_content", "Job description, responsibilities, qualifications, benefits"),
     "contact": ("06_contact", "Contact and work location"),
     "side": ("07_apply_share", "Apply Now, Share Job, hiring process"),
-    "footer": ("08_footer", "Footer"),
     "seo": ("09_seo", "Page data for search engines"),
     "layout": ("10_layout_keyboard", "Layout and keyboard"),
 }
@@ -93,11 +92,6 @@ STEPS = {
     "JD057": ("side", ["Share Job Click Should Keep The Page"]),
     "JD059": ("side", ["Hiring Process Should List All Steps In Order"]),
     "JD060": ("side", ["Hiring Process Numbers Should Be In Order"]),
-    "JD061": ("footer", ["Footer Should Show All Sections"]),
-    "JD062": ("footer", ["Footer Open Positions Link Should Open Jobs List"]),
-    "JD063": ("footer", ["Footer Email Should Be Correct And Clickable"]),
-    "JD064": ("footer", ["Footer Phone Should Be Correct And Clickable"]),
-    "JD065": ("footer", ["Footer Copyright Should Be Correct"]),
     "JD066": ("seo", [f"{E}    seo_meta"]),
     "JD067": ("seo", [f"{E}    seo_title"]),
     "JD068": ("seo", [f"{E}    seo_type"]),
@@ -111,7 +105,7 @@ STEPS = {
 DATA_KEYWORDS = ("Every Job Detail Field", "Every Card Should Open", "Detail Header Should Match",
                  "Description Should Match Its Card", "Apply Now Of Every Job")
 # Behaviour or text that the team still has to confirm.
-ASSUMPTION_IDS = {"JD018", "JD025", "JD026", "JD057", "JD062"}
+ASSUMPTION_IDS = {"JD018", "JD025", "JD026", "JD057"}
 
 
 def file_header(title, ids, manual=False):

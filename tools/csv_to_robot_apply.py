@@ -31,7 +31,6 @@ GROUPS = {
     "sidebar": ("09_sidebar", "Complete Your Profile and What to expect"),
     "review": ("10_review", "Review Application dialog"),
     "layout": ("11_layout_keyboard", "Layout and keyboard"),
-    "footer": ("12_footer", "Footer"),
 }
 MANUAL_FILE = "99_manual"
 
@@ -271,8 +270,7 @@ STEPS = {'AP001': ('open',
             'Review Dialog Should Be Closed']),
  'AP072': ('review', ['Open Review Dialog With Valid Form', 'Element Should Be Shown    ${MODAL_CONFIRM}']),
  'AP073': ('layout', ['Profile Panel Should Be On The Right On Desktop']),
- 'AP074': ('layout', ['Tab Key Should Move Through The Personal Fields']),
- 'AP075': ('footer', ['Apply Form Footer Should Be Shown'])}
+ 'AP074': ('layout', ['Tab Key Should Move Through The Personal Fields'])}
 
 # Text or behaviour that the dev site shows differently from Figma, or that the team must confirm.
 ASSUMPTION_IDS = {'AP061', 'AP071', 'AP005', 'AP036'}

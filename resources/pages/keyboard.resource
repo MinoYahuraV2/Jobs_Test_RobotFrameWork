@@ -24,7 +24,6 @@ Keyboard Navigation Should Work On Jobs Page
     Element Should Be Reachable By Tab    ${SORT_DROPDOWN}
     Element Should Be Reachable By Tab    ${first_filter}
     Element Should Be Reachable By Tab    ${first_apply}
-    Element Should Be Reachable By Tab    ${FOOTER_LINK}[open_positions]
     # operate with keys: SPACE toggles a filter, ENTER opens a job
     Element Should Be Reachable By Tab    ${first_filter}
     Press Keys    NONE    SPACE

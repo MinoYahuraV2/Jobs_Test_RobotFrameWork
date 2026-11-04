@@ -54,21 +54,3 @@ CARD = {  # relative xpath inside one card: article > div(badges) h3 p div(detai
 }
 DETAIL_TITLE = "xpath://main//article//h1"  # job title on the detail page
 
-# ---------------- Footer ----------------
-# The dev footer is in Thai and has fewer links than Figma. TODO = not on the dev site.
-FOOTER = "xpath://footer"
-FOOTER_SECTION = {"recruitment": "xpath:(//footer//h2)[1]", "contact_hr": "xpath:(//footer//h2)[2]", "company": "xpath:(//footer//h2)[3]"}
-FOOTER_COMPANY_INFO = "xpath://footer//address"
-FOOTER_LINK = {
-    "open_positions": "xpath://footer//a[@href='/jobs']",
-    "culture": TODO,  # not on dev footer
-    "recruitment_process": TODO,  # not on dev footer
-    "faq": TODO,  # not on dev footer
-    "go_to_website": "xpath://footer//a[starts-with(@href,'https://www.eventthai.com')]",
-    "cookies": TODO,  # on dev this is plain text, not a link
-    "terms": TODO,  # on dev this is plain text, not a link
-    "privacy": TODO,  # on dev this is plain text, not a link
-}
-FOOTER_EMAIL_LINK = "xpath://footer//a[starts-with(@href,'mailto:')]"
-FOOTER_PHONE_LINK = "xpath://footer//a[starts-with(@href,'tel:')]"
-FOOTER_COPYRIGHT_TEXT = "xpath://footer//p[contains(normalize-space(),'All Rights Reserved')]"

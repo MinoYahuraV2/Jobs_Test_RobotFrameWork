@@ -97,7 +97,3 @@ EXPECT_LINES = [
 REVIEW_TITLE_TEXT = "Review Application"
 REVIEW_JOB_LINE = "Apply for: {title} ({job_type})"
 UNKNOWN_JOB_ID = "000000000000000000000000"
-
-# ---- Footer (same as the Jobs page) ----
-FOOTER_EMAIL = "job@eventthai.com"
-FOOTER_PHONE = "095 942 2201"
