@@ -22,12 +22,12 @@ SORT_LABEL_LATEST = "Sort: Latest"
 # ---- Filters ----
 CLEAR_FILTERS_TEXT = "Clear filters"
 FILTER_GROUP_TITLES = {"departments": "DEPARTMENTS", "job_types": "JOB TYPES", "location": "LOCATION"}
-# Options come from the database, so they change. These are what the dev site showed on 2026-10-28.
+# Options come from the database, so they change. These are what the dev site showed on 2026-11-04.
 # Figma options (Contract, Internship, Bangkok HQ, Chiang Mai ...) are not on dev: those cases SKIP.
 FILTER_OPTIONS = {
-    "departments": ["บริหาร (Management / Executive)", "Tech / IT / Developer"],
-    "job_types": ["Full-Time", "Part-Time"],
-    "location": ["อำเภอปากเกร็ด จังหวัดนนทบุรี", "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี"],
+    "departments": ["บริหาร (Management / Executive)", "Marketing / Digital / Content", "Tech / IT / Developer"],
+    "job_types": ["Full-Time"],
+    "location": ["Bangkok HQ", "Bangkok HQ (Pak Kret)"],
 }
 
 EMPTY_STATE_TEXT = "No open positions match your criteria"  # heading of the empty state

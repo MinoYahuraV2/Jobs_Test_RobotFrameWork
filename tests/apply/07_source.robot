@@ -10,7 +10,7 @@ Test Tags         automate    apply
 *** Test Cases ***
 AP044 ตรวจสอบตัวเลือกช่องทางที่รู้จักตำแหน่งงาน
     [Documentation]    ระบบแสดงคำถามและตัวเลือกทั้ง 11 ตัวใน 3 กลุ่ม
-    [Tags]    AP044    source    assumption
+    [Tags]    AP044    source
     All Source Options Should Be Shown
 
 AP045 ตรวจสอบการเลือกช่องทาง 1 ตัวเลือก
@@ -45,7 +45,7 @@ AP048 ตรวจสอบการกด Review Application โดยไม่
     Text Should Be Shown    ${ERR_SOURCE}
     Review Dialog Should Be Closed
 
-AP049 ตรวจสอบการเลือกตัวเลือก อื่น ๆ
+AP049 ตรวจสอบการเลือกตัวเลือก Other
     [Documentation]    ระบบแสดงช่องกรอกข้อความเพิ่ม (e.g. Friend recommendation, job fair…)
     [Tags]    AP049    source
     Select Source    ${SOURCE_OTHER}
@@ -53,7 +53,7 @@ AP049 ตรวจสอบการเลือกตัวเลือก อ�
     Element Should Be Shown    ${OTHER_INPUT}
     Element Attribute Value Should Be    ${OTHER_INPUT}    placeholder    ${OTHER_PLACEHOLDER}
 
-AP050 ตรวจสอบการเลือก อื่น ๆ โดยไม่กรอกข้อความ
+AP050 ตรวจสอบการเลือก Other โดยไม่กรอกข้อความ
     [Documentation]    ระบบแสดง "Please tell us where you heard about us." และไม่เปิดหน้าสรุป
     [Tags]    AP050    source
     Fill Whole Form Valid
@@ -62,7 +62,7 @@ AP050 ตรวจสอบการเลือก อื่น ๆ โดย�
     Text Should Be Shown    ${ERR_OTHER}
     Review Dialog Should Be Closed
 
-AP051 ตรวจสอบการยกเลิกตัวเลือก อื่น ๆ
+AP051 ตรวจสอบการยกเลิกตัวเลือก Other
     [Documentation]    ช่องกรอกข้อความเพิ่มหายไป
     [Tags]    AP051    source
     Select Source    ${SOURCE_OTHER}

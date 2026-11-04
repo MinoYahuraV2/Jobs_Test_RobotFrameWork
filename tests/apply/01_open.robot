@@ -28,8 +28,8 @@ AP003 ตรวจสอบชื่อแท็บเบราว์เซอ�
     Apply Form Title Should Name The Job
 
 AP004 ตรวจสอบการแสดงชื่อตำแหน่งที่สมัครในหัวฟอร์ม
-    [Documentation]    ระบบแสดงข้อความ "สมัครตำแหน่ง ชื่อตำแหน่ง" ตรงกับตำแหน่งที่เลือก
-    [Tags]    AP004    open    assumption
+    [Documentation]    ระบบแสดงข้อความ "Applying for— ชื่อตำแหน่ง" ตรงกับตำแหน่งที่เลือก
+    [Tags]    AP004    open
     Apply Form Should Name The Job
 
 AP005 ตรวจสอบการเปิดฟอร์มสมัครงานของรหัสงานที่ไม่มีอยู่ในระบบ

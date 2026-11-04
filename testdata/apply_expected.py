@@ -1,4 +1,4 @@
-"""Expected text and test data for the Apply Job form, measured on the dev site (2026-10-28).
+"""Expected text and test data for the Apply Job form, measured on the dev site (2026-11-04). On that date the dev form matched the Figma design (English texts).
 
 Where the dev site and the Figma design disagree, the value here follows the DEV site and the
 case carries the tag `assumption`. The differences are listed in NOTES.md.
@@ -13,34 +13,35 @@ APPLICANT = {
     "salary": "30000",
 }
 SALARY_SHOWN = "30,000"
-PHONE_IN_REVIEW = "(+66) 812345678"
+PHONE_IN_FIELD = "081-234-5678"          # the box formats the typed digits 0812345678
+PHONE_IN_REVIEW = "(+66) 81-234-5678"
 PORTFOLIO_URL_OK = "https://example.com"
 PORTFOLIO_IN_REVIEW = "example.com"
 
 # ---- Page texts ----
-FORM_H1_TEXT = "แบบฟอร์มสมัครงาน"           # Figma: Job Application Form
+FORM_H1_TEXT = "Job Application Form"
 SECTION_TITLES_TEXT = {
-    "personal": "ข้อมูลผู้สมัคร",             # Figma: Personal Information
+    "personal": "Personal Information",
     "resume": "Resume & Portfolio",
     "source": "Recruitment Source",
 }
-BREADCRUMB_TEXTS = ["Careers", "Jobs", "Job Details", "Apply Job"]
-BACK_TEXT = "Back to job details"
+APPLY_BREADCRUMB_TEXTS = ["Careers", "Jobs", "Job Details", "Apply Job"]
+BACK_TEXT = "Job details"
 
 # ---- Personal information ----
-FIELD_LABELS = {                            # Figma: First name * / Last name * / Email address * ...
-    "first_name": "ชื่อภาษาไทย *",
-    "last_name": "นามสกุลภาษาไทย *",
-    "email": "อีเมล *",
-    "phone": "เบอร์โทรศัพท์ *",
-    "salary": "เงินเดือนที่คาดหวัง (THB) *",
+FIELD_LABELS = {
+    "first_name": "First name *",
+    "last_name": "Last name *",
+    "email": "Email address *",
+    "phone": "Phone number *",
+    "salary": "Expected salary (THB) *",
 }
-FIELD_PLACEHOLDERS = {                      # Figma: Enter your firstname / ... / 08X-XXX-XXXX
-    "first_name": "เช่น อารยา",
-    "last_name": "เช่น สมิทธิ์",
+FIELD_PLACEHOLDERS = {
+    "first_name": "Enter your firstname",
+    "last_name": "Enter your lastname",
     "email": "john@example.com",
-    "phone": "081-234-5678",
-    "salary": "เช่น 30,000",
+    "phone": "08X-XXX-XXXX",
+    "salary": "e.g. 30,000 - 35,000",
 }
 ERR_FIRST_NAME = "First name is required."
 ERR_LAST_NAME = "Last name is required."
@@ -66,9 +67,9 @@ ERR_PORTFOLIO = "Enter a full URL (https://…)."
 SOURCE_GROUPS = {                           # Figma: X / Company Website / Other
     "Social Media": ["Facebook", "TikTok", "Instagram", "X (Twitter)"],
     "Website / Job Platform": ["JobsDB", "JobThai", "Jobtopgun", "LinkedIn", "Fastwork"],
-    "Direct Channel / Other": ["เว็บไซต์ของบริษัท", "อื่น ๆ"],
+    "Direct Channel / Other": ["Company Website", "Other"],
 }
-SOURCE_OTHER = "อื่น ๆ"
+SOURCE_OTHER = "Other"
 OTHER_PLACEHOLDER = "e.g. Friend recommendation, job fair…"
 ERR_SOURCE = "Please select at least one option."
 ERR_OTHER = "Please tell us where you heard about us."

@@ -48,8 +48,8 @@ CARD = {  # relative xpath inside one card: article > div(badges) h3 p div(detai
     "ongoing": "xpath:.//span[contains(normalize-space(),'Ongoing')]",  # NOT seen on dev yet (guess)
     "department": "xpath:./div[2]/div[1]/span",
     "location": "xpath:./div[2]/div[2]/span",
-    "work_mode": TODO,  # dev data has workMode = null for every job, so nothing to look at yet
-    "posted": "xpath:./div[3]/span[1]",  # empty on dev: postedDate = null for every job
+    "work_mode": "xpath:./div[2]/div[2]/span/span[2]",  # "Hybrid" next to the location
+    "posted": "xpath:./div[3]/span[1]",  # "Posted Nov 3, 2026"
     "view_apply": "xpath:.//a[normalize-space()='View & Apply']",
 }
 DETAIL_TITLE = "xpath://main//article//h1"  # job title on the detail page

@@ -9,16 +9,16 @@ Test Tags         automate    apply
 
 *** Test Cases ***
 AP012 ตรวจสอบหัวข้อของฟอร์มสมัครงาน
-    [Documentation]    ระบบแสดงหัวข้อ "แบบฟอร์มสมัครงาน" (Figma: Job Application Form)
-    [Tags]    AP012    head    assumption
+    [Documentation]    ระบบแสดงหัวข้อ "Job Application Form"
+    [Tags]    AP012    head
     Element Text Should Match    ${APPLY_H1}    ${FORM_H1_TEXT}    ignore_case=${False}
 
 AP013 ตรวจสอบหัวข้อของแต่ละส่วนในฟอร์ม
-    [Documentation]    ระบบแสดง 3 ส่วน คือ ข้อมูลผู้สมัคร, Resume & Portfolio และ Recruitment Source
-    [Tags]    AP013    head    assumption
+    [Documentation]    ระบบแสดง 3 ส่วน คือ Personal Information, Resume & Portfolio และ Recruitment Source
+    [Tags]    AP013    head
     Form Sections Should Be Shown
 
 AP014 ตรวจสอบเครื่องหมายช่องที่จำเป็นต้องกรอก
     [Documentation]    ช่องข้อมูลผู้สมัครทั้ง 5 ช่องมีเครื่องหมาย * ต่อท้ายชื่อช่อง
-    [Tags]    AP014    head    assumption
+    [Tags]    AP014    head
     Personal Labels Should Match

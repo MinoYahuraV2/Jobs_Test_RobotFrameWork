@@ -8,13 +8,13 @@ Test Tags         automate    apply
 
 
 *** Test Cases ***
-AP006 ตรวจสอบการแสดงลิงก์ Back to job details
-    [Documentation]    ระบบแสดงลิงก์ Back to job details ที่ด้านบนของฟอร์ม
+AP006 ตรวจสอบการแสดงลิงก์ Job details
+    [Documentation]    ระบบแสดงลิงก์ Job details ที่ด้านบนของฟอร์ม
     [Tags]    AP006    nav
     Element Should Be Shown    ${APPLY_PAGE_BACK}
     Element Text Should Include    ${APPLY_PAGE_BACK}    ${BACK_TEXT}
 
-AP007 ตรวจสอบการกดลิงก์ Back to job details
+AP007 ตรวจสอบการกดลิงก์ Job details
     [Documentation]    ระบบกลับไปหน้ารายละเอียดของตำแหน่งเดิม
     [Tags]    AP007    nav
     Click Element Safe    ${APPLY_PAGE_BACK}
@@ -33,7 +33,7 @@ AP009 ตรวจสอบการกดปุ่ม Cancel
 
 AP010 ตรวจสอบการแสดง Breadcrumb
     [Documentation]    ระบบแสดง Careers > Jobs > Job Details > Apply Job ตามลำดับ
-    [Tags]    AP010    nav    assumption
+    [Tags]    AP010    nav
     Breadcrumb Should Show The Apply Path
 
 AP011 ตรวจสอบการกดปุ่ม Back ของเบราว์เซอร์จากฟอร์มสมัครงาน

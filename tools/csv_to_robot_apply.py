@@ -68,7 +68,7 @@ STEPS = {'AP001': ('open',
  'AP019': ('personal', ['Element Should Be Shown    ${PHONE_PREFIX}']),
  'AP020': ('personal',
            ['Fill Field    phone    ${APPLICANT}[phone]',
-            'Field Value Should Be    phone    ${APPLICANT}[phone]']),
+            'Field Value Should Be    phone    ${PHONE_IN_FIELD}']),
  'AP021': ('personal',
            ['Fill Field    salary    ${APPLICANT}[salary]',
             'Field Value Should Be    salary    ${SALARY_SHOWN}']),
@@ -275,7 +275,7 @@ STEPS = {'AP001': ('open',
  'AP075': ('footer', ['Apply Form Footer Should Be Shown'])}
 
 # Text or behaviour that the dev site shows differently from Figma, or that the team must confirm.
-ASSUMPTION_IDS = {'AP010', 'AP061', 'AP071', 'AP005', 'AP012', 'AP016', 'AP044', 'AP004', 'AP014', 'AP036', 'AP013', 'AP015'}
+ASSUMPTION_IDS = {'AP061', 'AP071', 'AP005', 'AP036'}
 
 
 def file_header(title, ids, manual=False):
