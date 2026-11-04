@@ -21,7 +21,13 @@ TIMEOUT = _env("JOBS_TIMEOUT", "10s")
 RESULT_SETTLE = _env("JOBS_RESULT_SETTLE", "1s")  # wait after search/filter/sort
 # Detail page tests check ONLY this job (keeps the run short). Empty string = check every job.
 #   $env:JOBS_DETAIL_JOB_ONLY = ""            -> every job
-DETAIL_JOB_ONLY = _env("JOBS_DETAIL_JOB_ONLY", "Tester AI")
+DETAIL_JOB_ONLY = _env("JOBS_DETAIL_JOB_ONLY", "QA AI")
+
+# Tests that press "Confirm & Submit Application" create a REAL application on the site (it cannot be deleted from the CMS
+# and it sends a confirmation email). They SKIP unless this is set:  $env:JOBS_ALLOW_SUBMIT = "yes"
+ALLOW_SUBMIT = _env("JOBS_ALLOW_SUBMIT", "no").lower() == "yes"
+# The job the real application is sent to (the title as shown on the public Jobs page).
+SUBMIT_JOB_TITLE = _env("JOBS_SUBMIT_JOB", "QA AI")
 
 
 # ---- CMS (admin) login ----

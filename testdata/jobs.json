@@ -1,175 +1,19 @@
 {
   "status": "REAL",
-  "source": "7 jobs entered in the dev CMS (user screenshots 2026-10-28), text cross-checked with https://career-web-dev.eventpass.biz/jobs. work_mode and posted_date are empty in the CMS. Deadline year assumed 2026. Detail-page fields (vacancies, responsibilities, qualifications, benefits) were read from the dev detail pages on 2026-10-28: confirm them once against the CMS.",
+  "source": "6 jobs read from the dev public site (Jobs page + each detail page) on 2026-11-04. Cards show 'Due' only for urgent jobs, so deadline is None for the other jobs even though the page data (JSON-LD validThrough) has a date for them. The last job has no Company Benefits section (benefits = []). Deadline year assumed 2026. Confirm the lists once against the CMS. 'address' is the text of the 'Work place' section of the detail page (None when the page has no such section).",
   "jobs": [
-    {
-      "title": "Tester AI",
-      "job_type": "Full-Time",
-      "urgent": true,
-      "deadline": "2026-11-25",
-      "ongoing_until_filled": false,
-      "department": "Tech / IT / Developer",
-      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
-      "vacancies": 1,
-      "responsibilities": [
-        "รับผิดชอบในส่วนงานที่ได้รับมอบหมายตามตำแหน่ง เพื่อให้บรรลุเป้าหมายของทีม",
-        "ทำงานร่วมกับทีม Cross-functional (Product, Design, Engineering, Marketing) อย่างมีประสิทธิภาพ",
-        "วิเคราะห์และแก้ไขปัญหาที่เกิดขึ้น พร้อมนำเสนอแนวทางปรับปรุงที่สร้างสรรค์",
-        "อัปเดตเทรนด์และความรู้ใหม่ๆ เพื่อนำมาพัฒนาการทำงานอยู่เสมอ"
-      ],
-      "qualifications": [
-        "มีประสบการณ์การทำงานในสายงานที่เกี่ยวข้อง 2-5 ปี",
-        "มีทักษะการสื่อสารที่ดี สามารถทำงานเป็นทีมได้",
-        "เปิดรับความคิดเห็น (Feedback) และพร้อมเรียนรู้สิ่งใหม่ๆ",
-        "สามารถบริหารจัดการเวลาและรับมือกับความกดดันได้ดี"
-      ],
-      "benefits": [
-        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
-        "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "กองทุนสำรองเลี้ยงชีพ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ"
-      ]
-    },
-    {
-      "title": "Senior Frontend Engineer (React)",
-      "job_type": "Part-Time",
-      "urgent": true,
-      "deadline": "2026-11-13",
-      "ongoing_until_filled": false,
-      "department": "บริหาร (Management / Executive)",
-      "location": "อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "เรากำลังมองหาผู้ร่วมทีม...",
-      "vacancies": 1,
-      "responsibilities": [
-        "รับผิดชอบการพัฒนาระบบ..."
-      ],
-      "qualifications": [
-        "มีประสบการณ์การทำงาน 2-6 ปี..."
-      ],
-      "benefits": [
-        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
-        "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "กองทุนสำรองเลี้ยงชีพ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ",
-        "ทำงานแบบ Hybrid",
-        "เบี้ยเลี้ยงฝึกงาน (ตามตกลง)",
-        "ใบรับรองการผ่านงาน (Certificate)",
-        "โอกาสเรียนรู้และทำงานจริงกับผู้เชี่ยวชาญ",
-        "โอกาสพิจารณาเป็นพนักงานประจำในอนาคต"
-      ]
-    },
-    {
-      "title": "Reverted Engineer",
-      "job_type": "Full-Time",
-      "urgent": false,
-      "deadline": null,
-      "ongoing_until_filled": false,
-      "department": "Tech / IT / Developer",
-      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
-      "vacancies": 1,
-      "responsibilities": [
-        "รับผิดชอบในส่วนงานที่ได้รับมอบหมายตามตำแหน่ง เพื่อให้บรรลุเป้าหมายของทีม",
-        "ทำงานร่วมกับทีม Cross-functional (Product, Design, Engineering, Marketing) อย่างมีประสิทธิภาพ",
-        "วิเคราะห์และแก้ไขปัญหาที่เกิดขึ้น พร้อมนำเสนอแนวทางปรับปรุงที่สร้างสรรค์",
-        "อัปเดตเทรนด์และความรู้ใหม่ๆ เพื่อนำมาพัฒนาการทำงานอยู่เสมอ"
-      ],
-      "qualifications": [
-        "มีประสบการณ์การทำงานในสายงานที่เกี่ยวข้อง 2-5 ปี",
-        "มีทักษะการสื่อสารที่ดี สามารถทำงานเป็นทีมได้",
-        "เปิดรับความคิดเห็น (Feedback) และพร้อมเรียนรู้สิ่งใหม่ๆ",
-        "สามารถบริหารจัดการเวลาและรับมือกับความกดดันได้ดี"
-      ],
-      "benefits": [
-        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
-        "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ"
-      ]
-    },
-    {
-      "title": "Backend",
-      "job_type": "Full-Time",
-      "urgent": false,
-      "deadline": null,
-      "ongoing_until_filled": false,
-      "department": "Tech / IT / Developer",
-      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
-      "vacancies": 1,
-      "responsibilities": [
-        "รับผิดชอบในส่วนงานที่ได้รับมอบหมายตามตำแหน่ง เพื่อให้บรรลุเป้าหมายของทีม",
-        "ทำงานร่วมกับทีม Cross-functional (Product, Design, Engineering, Marketing) อย่างมีประสิทธิภาพ",
-        "วิเคราะห์และแก้ไขปัญหาที่เกิดขึ้น พร้อมนำเสนอแนวทางปรับปรุงที่สร้างสรรค์",
-        "อัปเดตเทรนด์และความรู้ใหม่ๆ เพื่อนำมาพัฒนาการทำงานอยู่เสมอ"
-      ],
-      "qualifications": [
-        "มีประสบการณ์การทำงานในสายงานที่เกี่ยวข้อง 2-5 ปี",
-        "มีทักษะการสื่อสารที่ดี สามารถทำงานเป็นทีมได้",
-        "เปิดรับความคิดเห็น (Feedback) และพร้อมเรียนรู้สิ่งใหม่ๆ",
-        "สามารถบริหารจัดการเวลาและรับมือกับความกดดันได้ดี"
-      ],
-      "benefits": [
-        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
-        "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ"
-      ]
-    },
-    {
-      "title": "Analysis",
-      "job_type": "Full-Time",
-      "urgent": false,
-      "deadline": null,
-      "ongoing_until_filled": false,
-      "department": "Tech / IT / Developer",
-      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
-      "vacancies": 1,
-      "responsibilities": [
-        "รับผิดชอบในส่วนงานที่ได้รับมอบหมายตามตำแหน่ง เพื่อให้บรรลุเป้าหมายของทีม",
-        "ทำงานร่วมกับทีม Cross-functional (Product, Design, Engineering, Marketing) อย่างมีประสิทธิภาพ",
-        "วิเคราะห์และแก้ไขปัญหาที่เกิดขึ้น พร้อมนำเสนอแนวทางปรับปรุงที่สร้างสรรค์",
-        "อัปเดตเทรนด์และความรู้ใหม่ๆ เพื่อนำมาพัฒนาการทำงานอยู่เสมอ"
-      ],
-      "qualifications": [
-        "มีประสบการณ์การทำงานในสายงานที่เกี่ยวข้อง 2-5 ปี",
-        "มีทักษะการสื่อสารที่ดี สามารถทำงานเป็นทีมได้",
-        "เปิดรับความคิดเห็น (Feedback) และพร้อมเรียนรู้สิ่งใหม่ๆ",
-        "สามารถบริหารจัดการเวลาและรับมือกับความกดดันได้ดี"
-      ],
-      "benefits": [
-        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
-        "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ"
-      ]
-    },
     {
       "title": "QA AI",
       "job_type": "Full-Time",
-      "urgent": false,
-      "deadline": null,
+      "urgent": true,
+      "deadline": "2026-12-12",
       "ongoing_until_filled": false,
-      "department": "Tech / IT / Developer",
-      "location": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
+      "department": "บริหาร (Management / Executive)",
+      "location": "Bangkok HQ",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-03",
       "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
-      "vacancies": 1,
+      "vacancies": 5,
       "responsibilities": [
         "รับผิดชอบในส่วนงานที่ได้รับมอบหมายตามตำแหน่ง เพื่อให้บรรลุเป้าหมายของทีม",
         "ทำงานร่วมกับทีม Cross-functional (Product, Design, Engineering, Marketing) อย่างมีประสิทธิภาพ",
@@ -185,31 +29,157 @@
       "benefits": [
         "วันหยุดพักผ่อนประจำปี (Annual Leave)",
         "ประกันสุขภาพและประกันอุบัติเหตุ",
-        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง",
-        "โบนัสประจำปีตามผลประกอบการ"
-      ]
+        "กองทุนสำรองเลี้ยงชีพ",
+        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง"
+      ],
+      "address": "ตำบลบ้านใหม่ อำเภอปากเกร็ด จังหวัดนนทบุรี"
     },
     {
-      "title": "Backend Engineer (Node.js)",
-      "job_type": "Part-Time",
+      "title": "Guest Experience Supervisor (หน้างานอีเวนต์)",
+      "job_type": "Full-Time",
       "urgent": false,
       "deadline": null,
       "ongoing_until_filled": false,
-      "department": "บริหาร (Management / Executive)",
-      "location": "อำเภอปากเกร็ด จังหวัดนนทบุรี",
-      "work_mode": null,
-      "posted_date": null,
-      "description": "สร้าง API ความเร็วสูง",
-      "vacancies": 2,
+      "department": "Marketing / Digital / Content",
+      "location": "Bangkok HQ (Pak Kret)",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-02",
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
+      "vacancies": 1,
       "responsibilities": [
-        "พัฒนา NestJS API"
+        "ดูแลจุดลงทะเบียนและทางเข้างาน",
+        "ประสานงานกับทีม Event และ Security"
       ],
       "qualifications": [
-        "มีประสบการณ์ Node.js 2 ปีขึ้นไป"
+        "ประสบการณ์งานบริการลูกค้า โรงแรม หรือ hospitality อย่างน้อย 2 ปี",
+        "ดูแลและจัดตารางทีมงานได้",
+        "แก้ปัญหาเฉพาะหน้าและรับมือลูกค้าที่ไม่พอใจได้",
+        "สื่อสารภาษาอังกฤษได้ดี",
+        "มีใจรักบริการ",
+        "ภาษาจีนหรือญี่ปุ่น เป็นข้อได้เปรียบ"
       ],
       "benefits": [
-        "ประกันสุขภาพและประกันอุบัติเหตุ"
-      ]
+        "วันหยุดพักผ่อนประจำปี (Annual Leave)"
+      ],
+      "address": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี"
+    },
+    {
+      "title": "Digital Marketing Executive",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Marketing / Digital / Content",
+      "location": "Bangkok HQ (Pak Kret)",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-02",
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
+      "vacancies": 1,
+      "responsibilities": [
+        "วางแผนและยิงแคมเปญขายบัตรอีเวนต์",
+        "ทำรายงานผลแคมเปญรายเดือน"
+      ],
+      "qualifications": [
+        "ประสบการณ์ด้าน Digital Marketing อย่างน้อย 2 ปี",
+        "ยิงโฆษณา Meta Ads และ TikTok Ads และดูแลงบประมาณได้",
+        "วิเคราะห์ผลแคมเปญ (ROAS, CPA) ได้",
+        "วางแผนคอนเทนต์ Social Media ได้",
+        "มีประสบการณ์โปรโมตอีเวนต์หรือคอนเสิร์ต เป็นข้อได้เปรียบ",
+        "ใช้ Google Analytics ได้ จะพิจารณาเป็นพิเศษ"
+      ],
+      "benefits": [
+        "ทำงานแบบ Hybrid"
+      ],
+      "address": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี"
+    },
+    {
+      "title": "Event Coordinator",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Marketing / Digital / Content",
+      "location": "Bangkok HQ (Pak Kret)",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-02",
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
+      "vacancies": 1,
+      "responsibilities": [
+        "วางแผนและดูแลงานอีเวนต์ตั้งแต่ต้นจนจบ",
+        "จัดทำรายงานสรุปหลังจบงาน"
+      ],
+      "qualifications": [
+        "ประสบการณ์ด้านการจัดงานอีเวนต์หรือคอนเสิร์ตอย่างน้อย 3 ปี",
+        "ประสานงาน vendor และควบคุมงบประมาณได้",
+        "ดูแลทีมงานหน้างานได้",
+        "สื่อสารภาษาอังกฤษได้",
+        "มีใจรักบริการ ทำงานภายใต้ความกดดันได้",
+        "เคยใช้ระบบขายบัตรหรือลงทะเบียนออนไลน์ จะพิจารณาเป็นพิเศษ"
+      ],
+      "benefits": [
+        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
+        "โอกาสพิจารณาเป็นพนักงานประจำในอนาคต"
+      ],
+      "address": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี"
+    },
+    {
+      "title": "Frontend Developer (React / Next.js)",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "Bangkok HQ (Pak Kret)",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-02",
+      "description": "เรากำลังมองหาผู้ร่วมทีมที่มีความหลงใหลในการสร้างสรรค์ประสบการณ์ที่ดีที่สุดให้กับผู้ใช้งาน เพื่อมาร่วมพัฒนาแพลตฟอร์ม EventThai ให้ตอบโจทย์ผู้จัดงานและผู้เข้าร่วมงานทั่วประเทศ",
+      "vacancies": 1,
+      "responsibilities": [
+        "พัฒนาหน้าเว็บขายบัตรและระบบสมัครงาน",
+        "ทำงานร่วมกับทีม Designer และ Backend"
+      ],
+      "qualifications": [
+        "ประสบการณ์พัฒนา Frontend ด้วย React อย่างน้อย 3 ปี",
+        "ใช้ Next.js และ TypeScript ได้",
+        "ทำ Responsive Web และเข้าใจ UX/UI เบื้องต้น",
+        "เชื่อมต่อ REST API กับฝั่ง Backend ได้",
+        "เขียน Test ด้วย React Testing Library หรือ Cypress ได้",
+        "มีประสบการณ์ Tailwind CSS จะพิจารณาเป็นพิเศษ",
+        "เคยทำระบบขายบัตรหรืออีเวนต์ เป็นข้อได้เปรียบ"
+      ],
+      "benefits": [
+        "วันหยุดพักผ่อนประจำปี (Annual Leave)",
+        "งบสำหรับการเรียนรู้และพัฒนาตัวเอง"
+      ],
+      "address": "อำเภอปากเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี"
+    },
+    {
+      "title": "Backend Developer (Node.js / NestJS)",
+      "job_type": "Full-Time",
+      "urgent": false,
+      "deadline": null,
+      "ongoing_until_filled": false,
+      "department": "Tech / IT / Developer",
+      "location": "Bangkok HQ",
+      "work_mode": "Hybrid",
+      "posted_date": "2026-11-02",
+      "description": "ร่วมทีมพัฒนาระบบสมัครงานและระบบขายบัตรของ Eventpass",
+      "vacancies": 1,
+      "responsibilities": [
+        "พัฒนาและดูแล API ของระบบสมัครงานและระบบขายบัตร",
+        "ทำงานร่วมกับทีม Frontend และ QA"
+      ],
+      "qualifications": [
+        "ประสบการณ์พัฒนา Backend ด้วย Node.js / TypeScript อย่างน้อย 3 ปี",
+        "มีประสบการณ์ใช้ NestJS",
+        "ออกแบบและใช้งาน MongoDB ได้ดี",
+        "เข้าใจการออกแบบ REST API, JWT และ RBAC",
+        "เขียน Unit test (Jest) ได้",
+        "มีประสบการณ์ AWS (S3/ECS) และ Docker จะพิจารณาเป็นพิเศษ",
+        "ประสบการณ์ระบบขายบัตร/อีเวนต์ เป็นข้อได้เปรียบ"
+      ],
+      "benefits": [],
+      "address": null
     }
   ]
 }

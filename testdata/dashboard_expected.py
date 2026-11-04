@@ -47,7 +47,7 @@ DASH_TABLE_SECTION_TITLE = "รายการผู้สมัครล่า�
 DASH_TABLE_HEADINGS_TEXT = ["วันที่สมัคร", "ผู้สมัคร", "ตำแหน่งที่สมัคร", "AI Screening", "สถานะ HR", "จัดการ"]
 DASH_PAGE_SIZE = 20
 DASH_BADGE_PATTERN = r"^(ผู้สมัครใหม่|เคยสมัคร \d+ ครั้ง)$"
-DASH_AI_LABELS = ["AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ"]
+DASH_AI_LABELS = ["AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ", "กำลังวิเคราะห์"]
 DASH_AI_SCORE_PATTERN = r"^Score: (\d{1,3}%|-)$"
 DASH_PROFILE_LINK_TEXT = "ดูโปรไฟล์"
 

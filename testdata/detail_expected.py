@@ -6,7 +6,7 @@ Values marked ASSUMPTION are the same on every job today; confirm them with the 
 TODO = "TODO"
 
 # The job every single-page test opens first: urgent, has a deadline, has all fields.
-DEFAULT_DETAIL_JOB = "Tester AI"
+DEFAULT_DETAIL_JOB = "QA AI"
 
 TITLE_SUFFIX = " | EventPass Careers"
 APPLY_PAGE_TITLE = "Apply \u2014 {title}" + TITLE_SUFFIX
@@ -55,8 +55,8 @@ HIRING_STEPS_EXPECTED = [("01", "Application Review"), ("02", "HR Screening"),
                          ("03", "Personality Test / Assessment"), ("04", "Team Interviews"), ("05", "Job Offer")]
 
 # ---- Apply form page (only what the detail page needs) ----
-APPLY_PAGE_JOB_TEXT = "\u0e2a\u0e21\u0e31\u0e04\u0e23\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 {title}"
-APPLY_PAGE_BACK_TEXT = "Back to job details"
+APPLY_PAGE_JOB_TEXT = "Applying for"   # the job title sits in its own element next to it
+APPLY_PAGE_BACK_TEXT = "Job details"
 
 # ---- JobPosting data for Google (JSON-LD) ----
 EMPLOYMENT_TYPE = {"Full-Time": "FULL_TIME", "Part-Time": "PART_TIME", "Contract": "CONTRACTOR", "Internship": "INTERN"}

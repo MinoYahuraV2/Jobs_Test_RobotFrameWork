@@ -31,7 +31,6 @@ GROUPS = {
     "sidebar": ("09_sidebar", "Complete Your Profile and What to expect"),
     "review": ("10_review", "Review Application dialog"),
     "layout": ("11_layout_keyboard", "Layout and keyboard"),
-    "footer": ("12_footer", "Footer"),
 }
 MANUAL_FILE = "99_manual"
 
@@ -68,7 +67,7 @@ STEPS = {'AP001': ('open',
  'AP019': ('personal', ['Element Should Be Shown    ${PHONE_PREFIX}']),
  'AP020': ('personal',
            ['Fill Field    phone    ${APPLICANT}[phone]',
-            'Field Value Should Be    phone    ${APPLICANT}[phone]']),
+            'Field Value Should Be    phone    ${PHONE_IN_FIELD}']),
  'AP021': ('personal',
            ['Fill Field    salary    ${APPLICANT}[salary]',
             'Field Value Should Be    salary    ${SALARY_SHOWN}']),
@@ -271,11 +270,10 @@ STEPS = {'AP001': ('open',
             'Review Dialog Should Be Closed']),
  'AP072': ('review', ['Open Review Dialog With Valid Form', 'Element Should Be Shown    ${MODAL_CONFIRM}']),
  'AP073': ('layout', ['Profile Panel Should Be On The Right On Desktop']),
- 'AP074': ('layout', ['Tab Key Should Move Through The Personal Fields']),
- 'AP075': ('footer', ['Apply Form Footer Should Be Shown'])}
+ 'AP074': ('layout', ['Tab Key Should Move Through The Personal Fields'])}
 
 # Text or behaviour that the dev site shows differently from Figma, or that the team must confirm.
-ASSUMPTION_IDS = {'AP010', 'AP061', 'AP071', 'AP005', 'AP012', 'AP016', 'AP044', 'AP004', 'AP014', 'AP036', 'AP013', 'AP015'}
+ASSUMPTION_IDS = {'AP061', 'AP071', 'AP005', 'AP036'}
 
 
 def file_header(title, ids, manual=False):

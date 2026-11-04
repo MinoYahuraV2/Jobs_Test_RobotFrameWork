@@ -63,6 +63,7 @@ STEPS = {
     "PF029": ("history", ["Repeat Applicants Should Show Their History    position"]),
     "PF030": ("history", ["Repeat Applicants Should Show Their History    ai"]),
     "PF031": ("history", ["Repeat Applicants Should Show Their History    status"]),
+    "PF074": ("history", ["Every Profile Should Pass    history_rule"]),
     "PF032": ("files", ["Files Section Should Be Titled"]),
     "PF033": ("files", ["Every Profile Should Pass    cv_ext"]),
     "PF034": ("files", ["Every Profile Should Pass    extra_files"]),
@@ -102,7 +103,7 @@ STEPS = {
 }
 
 # Behaviour read from the dev site (or an expectation of mine) that the team must confirm.
-ASSUMPTION_IDS = {"PF018", "PF021", "PF022", "PF023", "PF027", "PF028", "PF029", "PF037", "PF039", "PF041",
+ASSUMPTION_IDS = {"PF074", "PF018", "PF021", "PF022", "PF023", "PF027", "PF028", "PF029", "PF037", "PF039", "PF041",
                   "PF044", "PF046", "PF062", "PF064", "PF065", "PF066"}
 
 

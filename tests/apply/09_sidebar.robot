@@ -46,7 +46,7 @@ AP060 ตรวจสอบความคืบหน้าเมื่อย�
     Progress Should Be    25
     Side Item Should Be Done    Privacy Consent
 
-AP061 ตรวจสอบความคืบหน้าเมื่อเลือก อื่น ๆ แต่ยังไม่กรอกข้อความ
+AP061 ตรวจสอบความคืบหน้าเมื่อเลือก Other แต่ยังไม่กรอกข้อความ
     [Documentation]    ส่วน Recruitment Source ยังไม่นับว่าเสร็จ (ไม่แสดง Done) จนกว่าจะกรอกข้อความ
     [Tags]    AP061    sidebar    assumption
     Select Source    ${SOURCE_OTHER}

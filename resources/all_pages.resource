@@ -4,7 +4,6 @@ Resource          common.resource
 Resource          pages/search_sort.resource
 Resource          pages/filters.resource
 Resource          pages/job_cards.resource
-Resource          pages/footer.resource
 Resource          pages/keyboard.resource
 Resource          pages/display_rule.resource
 Resource          pages/detail.resource
@@ -17,3 +16,4 @@ Resource          pages/email_candidate.resource
 Resource          pages/jobs_admin.resource
 Resource          pages/job_new.resource
 Resource          pages/job_edit.resource
+Resource          pages/submit.resource

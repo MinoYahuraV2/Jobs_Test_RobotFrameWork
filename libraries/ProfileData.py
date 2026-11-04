@@ -22,6 +22,7 @@ EMPTY_LOG_TEXT = "ยังไม่มีประวัติการส่�
 NO_EXTRA_FILES_TEXT = "ไม่มีไฟล์แนบเพิ่มเติม"
 AUTO_REPLY_TYPE = "ตอบรับใบสมัครอัตโนมัติ"
 AUTO_SENDER = "ระบบอัตโนมัติ"
+AI_IN_PROGRESS = "กำลังวิเคราะห์"   # seen on dev while the AI still reads a new CV
 AI_HISTORY_PLACEHOLDER = "AINeedReviewScore:-"
 
 
@@ -36,6 +37,20 @@ const paths = arguments[0];
 const text = (el) => el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
 const parse = (path, html, status) => {
   const doc = new DOMParser().parseFromString(html, 'text/html');
+  // The server streams parts of the page (React Suspense): the HTML holds <template id="P:x"> holes and the
+  // content arrives later in a hidden element id="S:x". The browser swaps them with a script; do the same here.
+  for (let pass = 0; pass < 6; pass++) {
+    let moved = 0;
+    doc.querySelectorAll('template[id^="P:"]').forEach(hole => {
+      const part = doc.getElementById('S:' + hole.id.slice(2));
+      if (!part) return;
+      const holder = part.closest('table[hidden], div[hidden]');
+      hole.replaceWith(...part.childNodes);
+      if (holder) holder.remove(); else part.remove();
+      moved++;
+    });
+    if (!moved) break;
+  }
   const out = {path: path, status: status, title: doc.title};
   const sel = doc.querySelector('#profileHrStatus');
   if (!sel) { out.missing = true; out.text = text(doc.body).slice(0, 300); return out; }
@@ -207,6 +222,14 @@ def profile_problems(check, profiles, rows=None, status_options=None):
                 problems.append(f"{who}: no source channel shown")
             elif len(set(p["sources"])) != len(p["sources"]):
                 problems.append(f"{who}: a source channel is listed twice: {p['sources']}")
+        elif check == "history_rule":
+            # the page says: earlier applications are found by first name + last name + phone
+            key = (p["first"], p["last"], p["phone"])
+            others = [q for q in profiles if q["path"] != p["path"] and (q["first"], q["last"], q["phone"]) == key]
+            shown = p["history_count"] or 0
+            if shown != len(others):
+                problems.append(f"{who}: history lists {shown} earlier application(s), {len(others)} other application(s) "
+                                f"have the same name and phone")
         elif check == "history_consistent":
             rows_n, count = len(p["history_rows"]), p["history_count"]
             if p["history_none"]:
@@ -253,10 +276,10 @@ def profile_problems(check, profiles, rows=None, status_options=None):
                 problems.append(f"{who}: log is not newest first: {[r[0] for r in p['log_rows']]}")
         elif check == "ai_display":
             label, score, bar = p["ai_label"], p["ai_score"], p["bar"]
-            if label not in ("AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ"):
+            if label not in ("AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ", AI_IN_PROGRESS):
                 problems.append(f"{who}: unknown AI result '{label}'")
             if score == "-":
-                if label != "วิเคราะห์ไม่สำเร็จ":
+                if label not in ("วิเคราะห์ไม่สำเร็จ", AI_IN_PROGRESS):
                     problems.append(f"{who}: score '-' but result is '{label}'")
                 if bar is not None:
                     problems.append(f"{who}: has a score bar ({bar}) but no score")

@@ -9,6 +9,6 @@ Test Tags         automate
 
 *** Test Cases ***
 TC001 ตรวจสอบการแสดงผลหน้า Career - Jobs
-    [Documentation]    ระบบแสดงหน้า Career - Jobs พร้อม Header, Search Bar, Sort, Filter, รายการตำแหน่งงาน และ Footer ได้อย่างถูกต้อง
+    [Documentation]    ระบบแสดงหน้า Career - Jobs พร้อม Header, Search Bar, Sort, Filter และรายการตำแหน่งงาน ได้อย่างถูกต้อง
     [Tags]    TC001    smoke
     Jobs Page Should Display All Main Sections

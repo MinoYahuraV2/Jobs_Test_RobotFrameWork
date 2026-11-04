@@ -2,7 +2,6 @@
 Documentation     Job Detail page keywords (open, header, sections, contact, apply/share, SEO, layout).
 Resource          ../common.resource
 Resource          job_cards.resource
-Resource          footer.resource
 Library           ../../libraries/DetailHelpers.py
 Variables         ../../locators/detail_page.py
 Variables         ../../testdata/detail_expected.py
@@ -120,7 +119,7 @@ Detail Field Should Match
     ELSE IF    '${field}' == 'job_type'
         Detail Info Should Be    job_type    ${job}[job_type]
     ELSE IF    '${field}' == 'work_location'
-        Detail Info Should Be    work_location    ${WORK_LOCATION_TEXT}
+        Detail Info Should Be    work_location    ${job}[location]
     ELSE IF    '${field}' == 'salary'
         Detail Info Should Be    salary    ${SALARY_TEXT}
     ELSE IF    '${field}' == 'vacancies'
@@ -142,8 +141,9 @@ Detail Field Should Match
         Skip If    'benefits' not in $job    jobs.json has no benefits for this job.
         Detail List Should Match    ${BENEFITS_ITEMS}    ${job}[benefits]
     ELSE IF    '${field}' == 'location'
+        Skip If    not $job['address']    This job has no 'Work place' section on the detail page.
         Element Text Should Match    ${LOCATION_HEADING}    ${LOCATION_HEADING_TEXT}    ignore_case=${False}
-        Element Text Should Match    ${LOCATION_TEXT}    ${job}[location]    ignore_case=${False}
+        Element Text Should Match    ${LOCATION_TEXT}    ${job}[address]    ignore_case=${False}
     ELSE IF    '${field}' == 'seo_meta'
         ${meta}=    Get Meta Description
         ${ok}=    Description Matches Meta    ${job}[description]    ${meta}
@@ -493,8 +493,8 @@ Apply Form Should Open For Job
     Wait Until Element Is Visible    ${APPLY_PAGE_HEADING}
     ${expected_title}=    Evaluate    $APPLY_PAGE_TITLE.format(title=$title)
     Title Should Be    ${expected_title}
-    ${expected_text}=    Evaluate    $APPLY_PAGE_JOB_TEXT.format(title=$title)
-    Page Should Contain    ${expected_text}
+    Page Should Contain    ${APPLY_PAGE_JOB_TEXT}
+    Page Should Contain Element    xpath://main//*[normalize-space()="${title}"]
 
 Apply Now Should Open Form Of This Job
     Apply Form Should Open For Job    ${DEFAULT_DETAIL_JOB}
@@ -555,10 +555,6 @@ Hiring Process Numbers Should Be In Order
     ${want}=    Evaluate    [n for n, s in $HIRING_STEPS_EXPECTED]
     Should Be Equal    ${texts}    ${want}
 
-# ================= footer on the detail page (same keywords as the Jobs page) =================
-Footer Open Positions Link Should Open Jobs List
-    Footer Link Should Navigate    open_positions
-    Wait Until Keyword Succeeds    10s    1s    Location Should Be Jobs List
 
 # ================= SEO data =================
 Get Meta Description

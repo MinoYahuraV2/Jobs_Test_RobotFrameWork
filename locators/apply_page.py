@@ -6,8 +6,7 @@ visible text and page structure (never CSS classes). Templates hold {id} / {name
 
 # ---------------- Top of the page ----------------
 APPLY_H1 = "xpath://main//h1"
-APPLY_JOB_LINE = ("xpath://main//*[contains(normalize-space(),'\u0e2a\u0e21\u0e31\u0e04\u0e23\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07') "
-                  "and not(*[contains(normalize-space(),'\u0e2a\u0e21\u0e31\u0e04\u0e23\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07')])]")
+APPLY_JOB_LINE = "xpath://main//h1/following-sibling::p[contains(normalize-space(),'Applying for')]"  # "Applying for— <job>"
 CANCEL_LINK = "xpath://main//a[normalize-space()='Cancel']"
 REVIEW_BUTTON = "xpath://main//button[normalize-space()='Review Application']"
 BREADCRUMB_ITEMS = "xpath://nav[@aria-label='Breadcrumb']//ol/li[not(@aria-hidden='true')]"

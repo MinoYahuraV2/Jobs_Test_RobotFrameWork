@@ -64,4 +64,4 @@ NOT_FOUND_BUTTON = "xpath://main//a[normalize-space()='See open positions']"
 
 # ---------------- Apply form page (/jobs/<id>/apply): only what this page links to ----------------
 APPLY_PAGE_HEADING = "xpath://main//h1"
-APPLY_PAGE_BACK = "xpath://main//a[normalize-space()='Back to job details']"
+APPLY_PAGE_BACK = "xpath://main//a[normalize-space()='Job details']"

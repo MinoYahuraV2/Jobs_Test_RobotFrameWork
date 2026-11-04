@@ -9,13 +9,13 @@ Test Tags         automate    apply
 
 *** Test Cases ***
 AP015 ตรวจสอบการแสดงชื่อช่องข้อมูลผู้สมัคร
-    [Documentation]    ระบบแสดงช่อง ชื่อ, นามสกุล, อีเมล, เบอร์โทรศัพท์ และเงินเดือนที่คาดหวัง (THB)
-    [Tags]    AP015    personal    assumption
+    [Documentation]    ระบบแสดงช่อง First name, Last name, Email address, Phone number และ Expected salary (THB)
+    [Tags]    AP015    personal
     Personal Labels Should Match
 
 AP016 ตรวจสอบข้อความตัวอย่างในช่อง (placeholder)
     [Documentation]    ทุกช่องแสดงข้อความตัวอย่างตามที่กำหนด
-    [Tags]    AP016    personal    assumption
+    [Tags]    AP016    personal
     Placeholders Should Match
 
 AP017 ตรวจสอบการกรอกชื่อและนามสกุลภาษาไทย
@@ -38,10 +38,10 @@ AP019 ตรวจสอบรหัสประเทศหน้าช่อ�
     Element Should Be Shown    ${PHONE_PREFIX}
 
 AP020 ตรวจสอบการกรอกเบอร์โทรศัพท์
-    [Documentation]    ระบบรับเบอร์โทรศัพท์และแสดงค่าที่กรอกครบ
+    [Documentation]    ระบบรับเบอร์โทรศัพท์และจัดรูปแบบเป็น 081-234-5678
     [Tags]    AP020    personal
     Fill Field    phone    ${APPLICANT}[phone]
-    Field Value Should Be    phone    ${APPLICANT}[phone]
+    Field Value Should Be    phone    ${PHONE_IN_FIELD}
 
 AP021 ตรวจสอบการจัดรูปแบบเงินเดือนที่คาดหวัง
     [Documentation]    กรอก 30000 แล้วระบบแสดงเป็น 30,000

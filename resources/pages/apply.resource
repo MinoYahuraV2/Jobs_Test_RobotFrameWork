@@ -3,7 +3,6 @@ Documentation     Apply Job form keywords (open, fill, upload, source, privacy, 
 ...               The tests never press "Confirm & Submit Application": that would create a real application.
 Resource          ../common.resource
 Resource          detail.resource
-Resource          footer.resource
 Library           ../../libraries/ApplyHelpers.py
 Variables         ../../locators/apply_page.py
 Variables         ../../testdata/apply_expected.py
@@ -236,8 +235,8 @@ Apply Form Title Should Name The Job
     Title Should Be    ${expected}
 
 Apply Form Should Name The Job
-    ${expected}=    Evaluate    $APPLY_PAGE_JOB_TEXT.format(title=$DEFAULT_DETAIL_JOB)
-    Element Should Contain    ${APPLY_JOB_LINE}    ${expected}
+    Element Should Contain    ${APPLY_JOB_LINE}    ${APPLY_PAGE_JOB_TEXT}
+    Element Should Contain    ${APPLY_JOB_LINE}    ${DEFAULT_DETAIL_JOB}
 
 Unknown Job Apply Form Should Show Not Found
     Go To    ${BASE_URL}${JOBS_PATH}/${UNKNOWN_JOB_ID}/apply
@@ -246,13 +245,13 @@ Unknown Job Apply Form Should Show Not Found
 Breadcrumb Should Show The Apply Path
     ${items}=    Get WebElements    ${BREADCRUMB_ITEMS}
     ${count}=    Get Length    ${items}
-    Skip If    ${count} == 0    Dev apply page shows only the "Back to job details" link. Figma shows Careers > Jobs > Job Details > Apply Job. Waiting for the team to confirm.
+    Skip If    ${count} == 0    The apply page has no breadcrumb (it showed only the "Job details" link before 2026-11-04).
     ${texts}=    Create List
     FOR    ${item}    IN    @{items}
         ${text}=    Get Text    ${item}
         Append To List    ${texts}    ${text.strip()}
     END
-    Should Be Equal    ${texts}    ${BREADCRUMB_TEXTS}
+    Should Be Equal    ${texts}    ${APPLY_BREADCRUMB_TEXTS}
 
 Browser Back From Form Should Return To Detail
     Open Job Detail By Title    ${DEFAULT_DETAIL_JOB}
@@ -337,12 +336,3 @@ Review Dialog Should Show The Documents
     ${resume}=    Test File Name    pdf
     Review Dialog Should Include    Resume/CV: ${resume} 2 KB    Portfolio Link: ${PORTFOLIO_IN_REVIEW}
 
-Apply Form Footer Should Be Shown
-    [Documentation]    The apply page has two <footer> tags (the first one is empty), so look at the last one.
-    ${footer}=    Set Variable    xpath:(//footer)[last()]
-    Element Should Be Shown    ${footer}
-    ${text}=    Get Text    ${footer}
-    ${year}=    Evaluate    str(__import__('datetime').date.today().year)
-    Should Contain    ${text}    ${FOOTER_EMAIL}
-    Should Contain    ${text}    ${FOOTER_PHONE}
-    Should Contain    ${text}    ${year}

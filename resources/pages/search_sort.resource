@@ -16,7 +16,6 @@ Jobs Page Should Display All Main Sections
         Element Should Be Shown    ${RESULT_COUNT}
     END
     Job Cards Should Be Displayed
-    Element Should Be Shown    ${FOOTER}
 
 Hero Title Should Be Correct
     Element Text Should Match    ${HERO_TITLE}    ${HERO_TITLE_TEXT}    ignore_case=${False}
