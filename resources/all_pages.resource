@@ -17,3 +17,4 @@ Resource          pages/email_candidate.resource
 Resource          pages/jobs_admin.resource
 Resource          pages/job_new.resource
 Resource          pages/job_edit.resource
+Resource          pages/submit.resource

@@ -56,7 +56,7 @@ PF_LOG_HEADINGS_TEXT = ["วันที่", "ประเภท", "ผู้�
 PF_STATUS_NOTE = "AI Screening เป็นผลประเมินจากระบบ ส่วน HR อัปเดตได้เฉพาะสถานะ HR"
 PF_AI_NOTE = "ผลนี้มาจากการประเมินอัตโนมัติของ AI จาก JD และ CV ผู้สมัคร ไม่สามารถแก้ไขได้โดยตรง ใช้ประกอบการพิจารณาเท่านั้น"
 PF_AI_FAILED_NOTE = "AI อ่าน CV ใบนี้ไม่สำเร็จ ให้พิจารณาจากไฟล์ CV โดยตรง"
-PF_AI_LABELS = ["AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ"]
+PF_AI_LABELS = ["AI Match", "AI Partial Match", "วิเคราะห์ไม่สำเร็จ", "กำลังวิเคราะห์"]
 PF_AI_FAILED = "วิเคราะห์ไม่สำเร็จ"
 PF_HR_NOTE = "สถานะนี้ใช้ควบคุมการทำงานของ HR และรายงานผู้สมัคร"
 # (value, text) in the order of the list. Same texts as the status filter on the dashboard.

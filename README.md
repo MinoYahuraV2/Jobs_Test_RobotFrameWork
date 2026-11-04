@@ -226,3 +226,19 @@ robot tests\job_new
 ```powershell
 robot tests\job_edit
 ```
+
+
+## เทสหลังกดยืนยันสมัครงาน (หน้าต่างสำเร็จ + ใบสมัครใน CMS)
+
+ไฟล์เทสอยู่ที่ `tests\submit\` (28 เคส จาก `data\testcases_submit.csv`) สร้างด้วย `python tools\csv_to_robot_submit.py`
+- `01_submit.robot` ส่งใบสมัครจริง 1 ใบไปที่ dev (ลบจาก CMS ไม่ได้ และส่งอีเมลยืนยันจริง) จึง **ข้ามอัตโนมัติ** ถ้าไม่เปิดสวิตช์
+- `02_after_submit.robot` อ่านอย่างเดียว ดูใบสมัครล่าสุดของ "ทดสอบ AUTO" ใน CMS รันได้ทุกเมื่อ ถ้ายังไม่มีใบสมัครจะข้าม
+- ตำแหน่งที่สมัครตั้งด้วย `JOBS_SUBMIT_JOB` (ค่าเริ่มต้น `QA AI`) ผู้สมัครทดสอบอยู่ใน `testdata\submit_expected.py`
+
+```powershell
+robot tests\submit\02_after_submit.robot            # อ่านอย่างเดียว
+
+$env:JOBS_ALLOW_SUBMIT = "yes"                      # เปิดสวิตช์ส่งจริง (ใช้ทุกครั้งที่ต้องการสร้างใบสมัครใหม่)
+robot tests\submit\01_submit.robot
+Remove-Item Env:JOBS_ALLOW_SUBMIT
+```
