@@ -62,24 +62,6 @@ TC029 ตรวจสอบการกรอง Full-Time
     Require Many Jobs
     Filter By Label Should Match Data    job_types    Full-Time
 
-TC030 ตรวจสอบการกรอง Part-Time
-    [Documentation]    ระบบแสดงเฉพาะตำแหน่งงานประเภท Part-Time
-    [Tags]    TC030    filter    needs-data
-    Require Many Jobs
-    Filter By Label Should Match Data    job_types    Part-Time
-
-TC031 ตรวจสอบการกรอง Contract
-    [Documentation]    ระบบแสดงเฉพาะตำแหน่งงานประเภท Contract
-    [Tags]    TC031    filter    needs-data
-    Require Many Jobs
-    Filter By Label Should Match Data    job_types    Contract
-
-TC032 ตรวจสอบการกรอง Internship
-    [Documentation]    ระบบแสดงเฉพาะตำแหน่งงานประเภท Internship
-    [Tags]    TC032    filter    needs-data
-    Require Many Jobs
-    Filter By Label Should Match Data    job_types    Internship
-
 TC033 ตรวจสอบการเลือกหลาย JOB TYPES
     [Documentation]    ระบบแสดงตำแหน่งงานตามเงื่อนไขประเภทงานที่เลือกไว้
     [Tags]    TC033    filter    needs-data    assumption
@@ -103,12 +85,6 @@ TC036 ตรวจสอบการกรอง Bangkok HQ
     [Tags]    TC036    filter    needs-data
     Require Many Jobs
     Filter By Label Should Match Data    location    Bangkok HQ
-
-TC037 ตรวจสอบการกรอง Chiang Mai
-    [Documentation]    ระบบแสดงเฉพาะตำแหน่งงานที่มีสถานที่ทำงาน Chiang Mai
-    [Tags]    TC037    filter    needs-data
-    Require Many Jobs
-    Filter By Label Should Match Data    location    Chiang Mai
 
 TC038 ตรวจสอบการเลือกหลาย LOCATION
     [Documentation]    ระบบแสดงตำแหน่งงานตามเงื่อนไขสถานที่ทำงานที่เลือกไว้

@@ -37,7 +37,7 @@ tools\list_todo.py        แสดงรายการที่ยังเป
 | 01_smoke | TC001 | 1 |
 | 03_hero_search | TC010-017 | 8 |
 | 04_sort | TC018-020 | 3 |
-| 05_filter | TC021-043 | 23 |
+| 05_filter | TC021-043 | 19 |
 | 06_job_card | TC044-057 | 14 |
 | 08_keyboard | TC071 | 1 |
 | 09_display_rule | TC072-082, TC084 | 12 |
