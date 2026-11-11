@@ -13,14 +13,14 @@ SB010 ใน CMS: ใบสมัครใหม่ต้องอยู่แ�
     New Application Should Be On Top Of The Dashboard
 
 SB011 ใน CMS: แถวของใบสมัครใหม่ในตาราง Dashboard
-    [Documentation]    ตำแหน่ง QA AI สถานะ 'รอ HR Review' และผลประเมิน AI เป็นค่าที่รู้จัก
+    [Documentation]    ตำแหน่ง QA AI สถานะ HR เป็นสถานะที่รู้จัก (เริ่มที่ 'รอ HR Review' แต่ HR เปลี่ยนทีหลังได้) และผลประเมิน AI เป็นค่าที่รู้จัก
     [Tags]    SB011    check
     New Application Row Should Be Right
 
 SB012 ใน CMS: เวลาสมัครของใบสมัครใหม่
-    [Documentation]    วันที่สมัครเป็นเวลาล่าสุด (ไม่อยู่ในอนาคต ไม่เก่าเกิน 72 ชั่วโมง)
+    [Documentation]    เวลาสมัครไม่อยู่ในอนาคต (ไม่จำกัดว่าเก่าแค่ไหน เพื่อรันทีหลังได้)
     [Tags]    SB012    check    assumption
-    New Application Date Should Be Recent
+    New Application Date Should Not Be In The Future
 
 SB013 ใน CMS: ข้อมูลในหน้าโปรไฟล์ตรงกับที่กรอก
     [Documentation]    ชื่อ นามสกุล อีเมล เบอร์ (+66...) ตำแหน่ง เงินเดือน (฿30,000 / เดือน) และช่องทางที่รู้จัก (Facebook) ตรงกับที่กรอก
@@ -38,9 +38,9 @@ SB015 ใน CMS: ไฟล์แนบของใบสมัครใหม�
     New Application Files Should Be Right
 
 SB016 ใน CMS: สถานะ HR เริ่มต้นของใบสมัครใหม่
-    [Documentation]    รายการสถานะเลือก 'รอ HR Review' (hr_review)
+    [Documentation]    สถานะ HR เป็นคู่ค่า-ข้อความที่รู้จัก (เริ่มที่ hr_review แต่ HR เปลี่ยนทีหลังได้) และตารางกับโปรไฟล์ขึ้นตรงกัน
     [Tags]    SB016    check
-    New Application Should Wait For HR
+    New Application HR Status Should Be Valid
 
 SB017 ใน CMS: ผลประเมิน AI ของใบสมัครใหม่
     [Documentation]    เป็น AI Match / AI Partial Match / วิเคราะห์ไม่สำเร็จ หรือ 'กำลังวิเคราะห์' ระหว่างรอ
