@@ -1,12 +1,9 @@
 # Jobs_Test_RobotFrameWork
 
-ชุดทดสอบอัตโนมัติของหน้า **Career - Jobs** (Eventpass Group) ด้วย Robot Framework + SeleniumLibrary
-อ้างอิง Test Case จาก `data/testcases.csv` (84 เคสในไฟล์ CSV: สร้างเป็น test จริง 73 เคส + manual 3 คือ TC002, TC070 และ TC083; ตัดส่วน Header TC003-009 และ TC050 (Ongoing until filled) ออก ไม่ทดสอบ)
+ชุดทดสอบอัตโนมัติของเว็บ Career (Eventpass Group) ด้วย Robot Framework + SeleniumLibrary
+ครอบคลุมทั้งหน้า **Public** (Jobs, Jobs Detail, Apply) และหน้า **CMS** (Login, Dashboard, โปรไฟล์ผู้สมัคร, ร่างอีเมล, จัดการตำแหน่งงาน)
 
-## สถานะปัจจุบัน
-
-URL ตั้งไว้แล้วที่ `https://career-web-dev.eventpass.biz/jobs` (เว็บ dev) locator ส่วนใหญ่เติมจากเว็บ dev แล้ว (เว็บไม่มี `data-testid` จึงใช้ id, aria-label, ข้อความ และโครงสร้างหน้า) ที่ยังเป็น `TODO` คือของที่ไม่มีบนเว็บ dev (ลิงก์ Footer บางอัน, รูปแบบทำงาน) และข้อมูลงานจริงจากฐานข้อมูล
-เคสที่เจอ `TODO` จะถูก **SKIP** (ไม่ใช่ Fail) พร้อมบอกเหตุผล
+ค่าเริ่มต้นชี้ไปที่เว็บ dev `https://career-web-dev.eventpass.biz` เปลี่ยนไปเว็บอื่น (เช่น UAT) ได้ด้วย `JOBS_BASE_URL` ดูหัวข้อ [วิธีรัน](#วิธีรัน)
 
 ## สิ่งที่ต้องมี
 
@@ -17,226 +14,149 @@ URL ตั้งไว้แล้วที่ `https://career-web-dev.eventpass
 pip install -r requirements.txt
 ```
 
-## โครงสร้าง
+### บัญชี CMS (ความลับ)
+
+เทสฝั่ง CMS ต้อง login คัดลอก `config\secrets.local.env.example` เป็น `config\secrets.local.env` แล้วใส่อีเมลและรหัสผ่าน
+ไฟล์นี้อยู่ใน `.gitignore` ไม่ขึ้น GitHub ห้ามเขียนรหัสผ่านลงไฟล์อื่น ถ้าไม่มีไฟล์ เคสที่ต้องใช้บัญชีจะ SKIP
+อีกทางคือตั้ง `JOBS_ADMIN_EMAIL` และ `JOBS_ADMIN_PASSWORD` เป็นตัวแปรระบบ
+
+## ชุดเทสทั้งหมด
+
+| หน้า | โฟลเดอร์เทส | ไฟล์ Test Case (CSV) | ตัวสร้างเทส |
+|---|---|---|---|
+| Jobs (รายการงาน) | `tests\*.robot` | `data\testcases.csv` | `tools\csv_to_robot.py` |
+| Jobs Detail | `tests\detail\` | `data\testcases_detail.csv` | `tools\csv_to_robot_detail.py` |
+| Apply (ฟอร์มสมัครงาน + หน้าสรุป) | `tests\apply\` | `data\testcases_apply.csv` | `tools\csv_to_robot_apply.py` |
+| หลังกดยืนยันสมัคร (หน้าต่างสำเร็จ + ใบสมัครใน CMS) | `tests\submit\` | `data\testcases_submit.csv` | `tools\csv_to_robot_submit.py` |
+| CMS Login | `tests\login\` | `data\testcases_login.csv` | `tools\csv_to_robot_login.py` |
+| CMS Dashboard | `tests\dashboard\` | `data\testcases_dashboard.csv` | `tools\csv_to_robot_dashboard.py` |
+| CMS โปรไฟล์ผู้สมัคร | `tests\profile\` | `data\testcases_profile.csv` | `tools\csv_to_robot_profile.py` |
+| CMS ร่างอีเมลถึง Head | `tests\email_head\` | `data\testcases_email_head.csv` | `tools\csv_to_robot_email_head.py` |
+| CMS ร่างอีเมลถึงผู้สมัคร | `tests\email_candidate\` | `data\testcases_email_candidate.csv` | `tools\csv_to_robot_email_candidate.py` |
+| CMS จัดการตำแหน่งงาน | `tests\jobs_admin\` | `data\testcases_jobs_admin.csv` | `tools\csv_to_robot_jobs_admin.py` |
+| CMS เพิ่มตำแหน่งใหม่ | `tests\job_new\` | `data\testcases_job_new.csv` | `tools\csv_to_robot_job_new.py` |
+| CMS แก้ไขตำแหน่ง | `tests\job_edit\` | `data\testcases_job_edit.csv` | `tools\csv_to_robot_job_edit.py` |
+
+ดูจำนวนเคสทั้งหมดได้จาก `robot --dryrun tests` ผลรันจริงดูที่ `report.html`
+
+## โครงสร้างโฟลเดอร์
 
 ```
-data\testcases.csv        ไฟล์ Test Case ต้นทาง
-tests\                    ไฟล์ .robot (สร้างจาก CSV อย่าแก้ด้วยมือ)
-resources\                keyword แยกตามหน้า (filters, job_cards ...)
-locators\jobs_page.py     locator ทุกตัว (เติมจากเว็บ dev แล้ว ยกเว้นที่เป็น TODO)
-testdata\expected.py      ข้อความที่คาดหวัง (จาก Figma) และลิงก์ปลายทาง
-testdata\jobs.json        ข้อมูลงานที่คาดหวัง (ตอนนี้เป็นตัวอย่างจาก Figma)
-config\env.py             URL, browser, timeout
-libraries\                ตัวช่วย Python (Helpers.py, JobData.py)
-tools\csv_to_robot.py     สร้าง tests\*.robot จาก CSV
-tools\list_todo.py        แสดงรายการที่ยังเป็น TODO
+config\            ค่าตั้ง (env.py) และไฟล์บัญชี CMS (secrets.local.env, ไม่ขึ้น GitHub)
+data\              ไฟล์ Test Case ต้นทาง (CSV) เป็นแหล่งจริงของรหัสเคส คำอธิบาย ผลที่คาดหวัง และประเภท
+tests\             ไฟล์ .robot สร้างจาก CSV ห้ามแก้ด้วยมือ
+resources\         keyword แยกตามหน้า (resources\pages\*.resource)
+locators\          locator ของแต่ละหน้า
+testdata\          ข้อความและค่าที่คาดหวัง (*_expected.py), jobs.json
+libraries\         ตัวช่วย Python อ่านข้อมูลจากหน้าเว็บ
+tools\             ตัวสร้างเทสจาก CSV
+results\           ผลรัน (report.html, log.html) ไม่ขึ้น GitHub
+NOTES.md           บั๊กที่เจอ คำถามถึงทีม และสิ่งที่ยังไม่ได้ทดสอบ
 ```
-
-| ไฟล์ใน `tests\` | เคส | จำนวน |
-|---|---|---|
-| 01_smoke | TC001 | 1 |
-| 03_hero_search | TC010-017 | 8 |
-| 04_sort | TC018-020 | 3 |
-| 05_filter | TC021-043 | 23 |
-| 06_job_card | TC044-057 | 14 |
-| 08_keyboard | TC071 | 1 |
-| 09_display_rule | TC072-082, TC084 | 12 |
-| 99_manual (ข้ามเสมอ) | TC002, TC070, TC083 | 3 |
 
 ## วิธีรัน
 
-ตั้ง URL ของเว็บก่อน (เลือกอย่างใดอย่างหนึ่ง):
+เปิด PowerShell ที่โฟลเดอร์โปรเจกต์
 
 ```powershell
-$env:JOBS_BASE_URL = "https://staging.example.com"
-# หรือ
-robot --variable BASE_URL:https://staging.example.com tests
+$env:PYTHONIOENCODING = "utf-8"              # กันภาษาไทยเพี้ยน
+robot tests                                  # ทุกเคส
+robot tests\apply                            # ทั้งโฟลเดอร์
+robot tests\detail\03_header.robot           # ไฟล์เดียว
+robot --include PF035 tests\profile          # เคสเดียว (ใส่รหัสเคส)
+robot --include automate tests               # เฉพาะเคส automate
+robot --dryrun tests                         # ตรวจโค้ด ไม่เปิดเบราว์เซอร์
+robot --outputdir results\profile tests\profile   # แยกโฟลเดอร์ผลรัน
 ```
+
+ผลรันอยู่ที่ `results\` เปิด `report.html` (สรุป) และ `log.html` (รายละเอียด)
+
+### รันบนเว็บอื่น (เช่น UAT)
 
 ```powershell
-robot tests                                  # รันทั้งหมด
-robot tests\01_smoke.robot                   # รันไฟล์เดียว
-robot --include TC013 tests                  # รันเคสเดียว
-robot --include needs-data tests             # เฉพาะเคสที่ต้องใช้ข้อมูลจริง
-robot --exclude needs-data tests             # ไม่เอาเคสที่ต้องใช้ข้อมูลจริง
-robot --dryrun tests                         # ตรวจว่า keyword ครบ ไม่เปิดเบราว์เซอร์
+$env:JOBS_BASE_URL = "https://career-web-uat.eventpass.biz"
+robot tests\profile
+Remove-Item Env:JOBS_BASE_URL
 ```
 
-ผลลัพธ์อยู่ที่ `results\` (เปิด `report.html` และ `log.html`)
+ข้อมูลบนแต่ละเว็บต่างกัน (รายการงาน ผู้สมัคร) เคสที่ต้องใช้ข้อมูลที่ไม่มีจะ SKIP พร้อมบอกเหตุผล
 
-ตัวแปรระบบที่ใช้ได้:
+### ตัวแปรระบบ
 
 | ตัวแปร | ค่าเริ่มต้น | ความหมาย |
 |---|---|---|
-| `JOBS_BASE_URL` | `TODO` | URL ของเว็บ |
+| `JOBS_BASE_URL` | `https://career-web-dev.eventpass.biz` | URL ของเว็บ |
 | `JOBS_PATH` | `/jobs` | path ของหน้า Jobs |
 | `JOBS_BROWSER` | `chrome` | `chrome` หรือ `edge` |
-| `JOBS_HEADLESS` | `false` | `true` = ไม่เปิดหน้าต่าง |
+| `JOBS_HEADLESS` | `false` | `true` = ไม่เปิดหน้าต่างเบราว์เซอร์ |
 | `JOBS_TIMEOUT` | `10s` | เวลารอ element |
-| `JOBS_RESULT_SETTLE` | `1s` | เวลารอหลังค้นหา/กรอง/เรียงลำดับ |
+| `JOBS_RESULT_SETTLE` | `1s` | เวลารอหลังค้นหา กรอง เรียงลำดับ |
+| `JOBS_DETAIL_JOB_ONLY` | `QA AI` | ตำแหน่งหลักที่เทสหน้า Jobs Detail ใช้ |
+| `JOBS_ADMIN_LOGIN_PATH` | `/admin/login` | path หน้า Login CMS |
+| `JOBS_ADMIN_EMAIL`, `JOBS_ADMIN_PASSWORD` | อ่านจาก `config\secrets.local.env` | บัญชี CMS |
+| `JOBS_ALLOW_SUBMIT` | `no` | `yes` = อนุญาตให้ส่งใบสมัครจริง |
+| `JOBS_SUBMIT_JOB` | `QA AI` | ตำแหน่งที่ใช้ตอนส่งใบสมัครจริง |
 
-## เมื่อ dev ส่งเว็บมา: เติมค่าที่เป็น TODO
+## กติกาความปลอดภัยของเทส
 
-ดูรายการที่ยังขาด:
+เทสรันกับเว็บที่ใช้ร่วมกับทีม จึงตั้งกติกาไว้ดังนี้
 
-```powershell
-python tools\list_todo.py
-```
-
-1. **URL**: ตั้ง `JOBS_BASE_URL` และตรวจ `JOBS_PATH`
-2. **Locator**: แก้ที่ `locators\jobs_page.py` ไฟล์เดียว (ไม่ต้องแก้ test)
-   - ใช้รูปแบบ SeleniumLibrary เช่น `css:[data-testid='search-input']`
-   - `JOB_CARD` และตัวใน `CARD` ต้องเป็น xpath (ตัวใน `CARD` เป็น xpath แบบสัมพัทธ์ `xpath=.//...`)
-   - แนะนำให้ขอ `data-testid` จาก dev ทุก element
-3. **ข้อความและลิงก์**: แก้ที่ `testdata\expected.py` (ปลายทางของเมนู/Footer, ตัวเลือก Sort, ข้อความภาษาไทย, ข้อความตอนไม่พบงาน)
-4. **ข้อมูลงานจริง**: ส่งออกจากฐานข้อมูลมาใส่ `testdata\jobs.json` ตามรูปแบบเดิม แล้วเปลี่ยน `"status"` เป็น `"REAL"` เคสที่ติด tag `needs-data` จึงจะทำงาน
-
-ลำดับที่แนะนำ: เติม locator ของ smoke แล้วรัน `tests\01_smoke.robot` ก่อน จากนั้นเติมทีละกลุ่ม
-
-## สร้าง test ใหม่จาก CSV
-
-เมื่อแก้ `data\testcases.csv` (เพิ่ม/ลบ/แก้เคส):
+- **ไม่บันทึกข้อมูลใน CMS** เทสหน้าเพิ่ม/แก้ไขตำแหน่งไม่กดบันทึก และไม่กดสวิตช์ Manual Toggle เพราะกระทบหน้า Public ทันที เคสที่ต้องทำจริงเป็น manual
+- **ไม่ส่งอีเมลจริง** เคสที่กดปุ่มส่งใช้ช่อง TO ที่เป็นอีเมลไม่ได้ ระบบต้องปฏิเสธ และเทสตรวจว่าสถานะผู้สมัครไม่เปลี่ยน
+- **ไม่เปลี่ยนสถานะผู้สมัคร** เคสที่ต้องเปลี่ยนสถานะเป็น manual
+- **การส่งใบสมัครจริงต้องเปิดสวิตช์เอง** `tests\submit\01_submit.robot` ข้ามอัตโนมัติถ้า `JOBS_ALLOW_SUBMIT` ไม่ใช่ `yes` เพราะใบสมัครลบจาก CMS ไม่ได้และระบบส่งอีเมลตอบรับจริง ใช้ผู้สมัครทดสอบ "ทดสอบ AUTO" (ตั้งใน `testdata\submit_expected.py`)
+- **ไม่ใส่รหัสผ่านในโค้ดหรือผลรัน** ใช้ `config\secrets.local.env` เท่านั้น
 
 ```powershell
-python tools\csv_to_robot.py
+robot tests\submit\02_after_submit.robot     # อ่านอย่างเดียว ดูใบสมัครล่าสุดของ "ทดสอบ AUTO" ใน CMS
+
+$env:JOBS_ALLOW_SUBMIT = "yes"               # สร้างใบสมัครจริง 1 ใบบนเว็บที่ชี้อยู่
+robot tests\submit\01_submit.robot
+Remove-Item Env:JOBS_ALLOW_SUBMIT
 ```
 
-- CSV เป็นแหล่งจริงของรหัสเคส, คำอธิบาย, ผลที่คาดหวัง และประเภท (automate/manual)
-- ขั้นตอนของแต่ละเคสอยู่ในตาราง `STEPS` ในไฟล์ `tools\csv_to_robot.py` เคสใหม่ต้องเพิ่มที่นั่น ไม่เช่นนั้นสคริปต์จะแจ้งข้อผิดพลาด
-- รันซ้ำจะเขียนทับ `tests\*.robot`
+## สร้างเทสใหม่จาก CSV
+
+เมื่อแก้ไฟล์ CSV ใน `data\` (เพิ่ม ลบ แก้เคส) ให้รันตัวสร้างของหน้านั้น เช่น
+
+```powershell
+python tools\csv_to_robot_profile.py
+```
+
+- ขั้นตอนของแต่ละเคสอยู่ในตาราง `STEPS` ในไฟล์ตัวสร้าง เคสใหม่ต้องเพิ่มที่นั่น ไม่เช่นนั้นสคริปต์แจ้งข้อผิดพลาด
+- รันซ้ำจะเขียนทับไฟล์ใน `tests\` ของหน้านั้น
+- หลังสร้างให้รัน `robot --dryrun tests` ก่อน เพื่อตรวจว่า keyword ครบ
 
 ## Tag ที่ใช้
 
 | tag | ความหมาย |
 |---|---|
-| `TC001` ... | รหัสเคส |
-| `smoke`, `header`, `filter` ... | กลุ่มของเคส |
-| `needs-data` | ต้องใช้ข้อมูลงานจริงใน `jobs.json` |
-| `assumption` | ขึ้นกับกติกา Filter ที่ยังเป็นข้อสมมติ |
-| `needs-job-count` | ต้องมีจำนวนงานในระบบตามที่เคสกำหนด (เช่น 1-5, พอดี 5, พอดี 6, 0) ถ้าไม่ตรงจะ SKIP |
+| `TC001`, `JD001`, `AP001`, `PF001` ... | รหัสเคส (Jobs, Jobs Detail, Apply, Profile ...) |
+| `automate` | เคสที่รันอัตโนมัติ |
 | `manual` | ทดสอบด้วยมือ ข้ามเสมอ |
+| `assumption` | ใช้ค่าที่เห็นบนเว็บจริงหรือที่เดาไว้ ต้องให้ทีมยืนยัน |
+| `needs-job-count` | ต้องมีจำนวนงานตามที่เคสกำหนด ถ้าไม่ตรงจะ SKIP |
+| `needs-data` | ต้องใช้ข้อมูลงานจริงใน `testdata\jobs.json` |
 
-## กติกาแสดง Search / Filter ตามจำนวนงาน
+## กติกาแสดง Search / Filter ตามจำนวนงาน (หน้า Jobs)
 
-| จำนวนงานในหน้า | Search | Filter + Filter Tags | การ์ดงาน |
-|---|---|---|---|
-| 1-5 | ซ่อน | ซ่อน | แสดงเรียงลงมา |
-| 6 ขึ้นไป | แสดง | แสดง | แสดง |
+| จำนวนงานในหน้า | Search | Filter | Sort | การ์ดงาน |
+|---|---|---|---|---|
+| 1-5 | ซ่อน | ซ่อน | ซ่อน | แสดง |
+| 6 ขึ้นไป | แสดง | แสดง | แสดง | แสดง |
 
-- ค่าเกณฑ์อยู่ที่ `MIN_JOBS_FOR_SEARCH_FILTER` ใน `testdata\expected.py` (ตอนนี้ 6)
-- เคสกลุ่ม Search, Sort, Filter, Keyboard จะ SKIP เองเมื่อหน้ามีงานน้อยกว่าเกณฑ์
-- เคสกลุ่ม `09_display_rule` อ่านจำนวนการ์ดจริงบนหน้า แล้ว SKIP ถ้าจำนวนไม่ตรงเงื่อนไขของเคส
-- เคสขอบเขต (TC077 พอดี 5, TC078 พอดี 6, TC082 เป็น 0) ต้องให้ทีมเตรียมข้อมูลในระบบให้ตรงจำนวนก่อน
+- เกณฑ์ตั้งที่ `MIN_JOBS_FOR_SEARCH_FILTER` ใน `testdata\expected.py` (ตอนนี้ 6)
+- เคสกลุ่ม Search, Sort, Filter, Keyboard จะ SKIP เองเมื่อมีงานน้อยกว่าเกณฑ์
+- Filter ในกลุ่มเดียวกันเป็น "หรือ" ข้ามกลุ่มเป็น "และ" (ตั้งใน `libraries\JobData.py`)
+- ตัวเลือก Filter มาจากฐานข้อมูล เคสที่ระบุตัวเลือกที่เว็บไม่มีจะ SKIP
 
-## ข้อสมมติที่ต้องยืนยัน
+## บั๊กและคำถามที่ค้าง
 
-- เกณฑ์นับจาก **จำนวนงานทั้งหมด** ไม่ใช่ผลที่กรองแล้ว (TC081) และการ์ด 1 ใบ = 1 ตำแหน่ง ไม่มี pagination
-- ปุ่ม Clear filters บนเว็บ dev โผล่หลังเลือก Filter แล้วเท่านั้น (TC022 และ TC071 เลือก Filter ก่อนตรวจ)`n- ตัวเลือก Filter มาจากฐานข้อมูล (ตอนนี้ Departments 2, Job types 2, Location 2) เคสที่ระบุตัวเลือกที่ไม่มีบนเว็บ (Contract, Internship, Bangkok HQ, Chiang Mai) จะ SKIP`n- Footer บนเว็บ dev เป็นภาษาไทย และมีลิงก์แค่ ตำแหน่งที่เปิดรับสมัคร, อีเมล, เบอร์โทร, เว็บไซต์หลักบริษัท (Culture, FAQ, Recruitment Process ไม่มี; คุกกี้ เงื่อนไข ความเป็นส่วนตัว เป็นข้อความ ไม่ใช่ลิงก์)`n- Sort ซ่อนเมื่อมีงาน 1-5 ด้วย (ตามภาพ Figma ที่ไม่มี Sort) ตั้งใน `SORT_HIDDEN_WHEN_FEW` (TC084)
-- ข้อความ "N positions found." (TC011) แสดงเฉพาะเมื่อมีงาน 6 ขึ้นไป
-- 0 ตำแหน่ง: ซ่อน Search และ Filter แล้วแสดงข้อความไม่มีงาน (TC082)
-- ตัวเลขใต้หัวข้อ Hero ("2 open positions ...") นับงานทั้งหมด (TC076)
-- Filter ในกลุ่มเดียวกันเป็น "หรือ" และข้ามกลุ่มเป็น "และ" (ตั้งใน `libraries\JobData.py` กระทบ TC026, 033, 038, 039)
-- ช่องค้นหา: ผลต้อง "รวม" งานที่ชื่อตรงกับคำค้น (เว็บอาจค้นกว้างกว่าชื่องาน)
-- Description อ่านจากข้อมูล ไม่ฝังไว้ใน test (เปลี่ยนข้อความใน DB แล้วไม่ต้องแก้ test)
-- Sort บนเว็บ dev เป็น `<select>` ตัวเลือกคือ `Sort: Latest`, `Sort: Oldest`, `Sort: Title (A-Z)` (ค่า `latest`, `oldest`, `title_asc`) ตั้งใน `SORT_OPTION_LABELS` ของ `testdata\expected.py`
+ดู `NOTES.md` เก็บบั๊กที่เจอ คำตอบจากทีม ความต่างระหว่าง Figma กับเว็บ และสิ่งที่ยังไม่ได้ทดสอบของแต่ละหน้า
 
 ## แก้ปัญหา
 
-- ทุกเคสถูก SKIP: ยังไม่ได้ตั้ง `JOBS_BASE_URL` หรือ locator/ข้อมูลยังเป็น `TODO` ดูเหตุผลใน `log.html`
-- `robot` ล้มด้วยข้อความ `unknown encoding: utf-8:backslashreplace`: ตั้ง `$env:PYTHONIOENCODING = "utf-8"` ก่อนรัน
-
-
-## เทสหน้า Login ของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\login\` (56 เคส จาก `data\testcases_login.csv`) สร้างด้วย `python tools\csv_to_robot_login.py`
-บัญชีทดสอบเป็นความลับ: คัดลอก `config\secrets.local.env.example` เป็น `config\secrets.local.env` แล้วใส่อีเมลและรหัสผ่าน (ไฟล์นี้ไม่ขึ้น GitHub) ถ้าไม่มีไฟล์ เคสที่ต้องใช้บัญชีจะ SKIP
-
-```powershell
-robot tests\login
-```
-
-## เทสหน้า Dashboard ของ CMS
-
-อยู่ใน `tests\dashboard\` (77 เคส จาก `data\testcases_dashboard.csv`) สร้างด้วย `python tools\csv_to_robot_dashboard.py`
-ต้องใช้บัญชีเดียวกับเทส Login (`config\secrets.local.env`) เทสอ่านตัวเลขและแถวจากหน้าเว็บเอง แล้วเทียบกันเองและเทียบกับไฟล์ Export จึงไม่ผูกกับข้อมูลผู้สมัครในฐานข้อมูล
-ไฟล์ที่ดาวน์โหลดจากปุ่ม Export Report เก็บที่ `results\downloads\` (ไม่ขึ้น GitHub)
-
-```powershell
-$env:PYTHONIOENCODING="utf-8"
-robot --outputdir results\dashboard tests\dashboard
-```
-
-## เทสหน้าโปรไฟล์ผู้สมัครของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\profile\` (73 เคส จาก `data\testcases_profile.csv`) สร้างด้วย `python tools\csv_to_robot_profile.py`
-ใช้บัญชีทดสอบเดียวกับหน้า Login เทสอ่านข้อมูลอย่างเดียว ไม่บันทึกสถานะและไม่ส่งอีเมล (เคสที่ต้องทำจริงเป็น manual)
-
-```powershell
-robot tests\profile
-```
-
-
-## เทสหน้าร่างอีเมลส่งให้ Head ของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\email_head\` (50 เคส จาก `data\testcases_email_head.csv`) สร้างด้วย `python tools\csv_to_robot_email_head.py`
-เทสไม่ส่งอีเมลจริง: เคสที่กดปุ่มส่งใช้ TO ที่เป็นอีเมลไม่ได้ ระบบต้องปฏิเสธ และเทสตรวจว่าสถานะผู้สมัครไม่เปลี่ยน เคสที่ต้องส่งจริงเป็น manual
-
-```powershell
-robot tests\email_head
-```
-
-
-## เทสหน้าร่างอีเมลถึงผู้สมัครของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\email_candidate\` (51 เคส จาก `data\testcases_email_candidate.csv`) สร้างด้วย `python tools\csv_to_robot_email_candidate.py`
-กติกาเดียวกับหน้าส่งให้ Head: เทสไม่ส่งอีเมลจริง เคสที่ต้องส่งจริงเป็น manual
-
-```powershell
-robot tests\email_candidate
-```
-
-
-## เทสหน้าจัดการตำแหน่งงานของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\jobs_admin\` (55 เคส จาก `data\testcases_jobs_admin.csv`) สร้างด้วย `python tools\csv_to_robot_jobs_admin.py`
-เทสไม่กดสวิตช์ Manual Toggle และไม่บันทึกฟอร์ม เพราะกระทบหน้า Public เคสที่ต้องทำจริงเป็น manual
-
-```powershell
-robot tests\jobs_admin
-```
-
-
-## เทสฟอร์มเพิ่มตำแหน่งใหม่ของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\job_new\` (52 เคส จาก `data\testcases_job_new.csv`) สร้างด้วย `python tools\csv_to_robot_job_new.py`
-เทสไม่บันทึกตำแหน่ง (ตำแหน่งที่บันทึกขึ้นหน้า Public และลบจาก CMS ไม่ได้) เคสที่ต้องบันทึกจริงเป็น manual
-
-```powershell
-robot tests\job_new
-```
-
-
-## เทสหน้าแก้ไขตำแหน่งของ CMS
-
-ไฟล์เทสอยู่ที่ `tests\job_edit\` (66 เคส จาก `data\testcases_job_edit.csv`) สร้างด้วย `python tools\csv_to_robot_job_edit.py`
-เทสไม่บันทึกตำแหน่ง (การบันทึกเปลี่ยนหน้า Public ทันที) เคสที่ต้องบันทึกจริงเป็น manual
-
-```powershell
-robot tests\job_edit
-```
-
-
-## เทสหลังกดยืนยันสมัครงาน (หน้าต่างสำเร็จ + ใบสมัครใน CMS)
-
-ไฟล์เทสอยู่ที่ `tests\submit\` (28 เคส จาก `data\testcases_submit.csv`) สร้างด้วย `python tools\csv_to_robot_submit.py`
-- `01_submit.robot` ส่งใบสมัครจริง 1 ใบไปที่ dev (ลบจาก CMS ไม่ได้ และส่งอีเมลยืนยันจริง) จึง **ข้ามอัตโนมัติ** ถ้าไม่เปิดสวิตช์
-- `02_after_submit.robot` อ่านอย่างเดียว ดูใบสมัครล่าสุดของ "ทดสอบ AUTO" ใน CMS รันได้ทุกเมื่อ ถ้ายังไม่มีใบสมัครจะข้าม
-- ตำแหน่งที่สมัครตั้งด้วย `JOBS_SUBMIT_JOB` (ค่าเริ่มต้น `QA AI`) ผู้สมัครทดสอบอยู่ใน `testdata\submit_expected.py`
-
-```powershell
-robot tests\submit\02_after_submit.robot            # อ่านอย่างเดียว
-
-$env:JOBS_ALLOW_SUBMIT = "yes"                      # เปิดสวิตช์ส่งจริง (ใช้ทุกครั้งที่ต้องการสร้างใบสมัครใหม่)
-robot tests\submit\01_submit.robot
-Remove-Item Env:JOBS_ALLOW_SUBMIT
-```
+- **ทุกเคสถูก SKIP**: เคสที่ใช้บัญชี CMS จะข้ามถ้าไม่มี `config\secrets.local.env` ดูเหตุผลใน `log.html`
+- **`unknown encoding: utf-8:backslashreplace`**: ตั้ง `$env:PYTHONIOENCODING = "utf-8"` ก่อนรัน
+- **เว็บ dev ขึ้น "This page couldn't load" หรือ 502 เป็นช่วง ๆ**: เว็บ dev ล้มเวลาโดนเรียกถี่ ผลรันจะไม่นิ่งและพังคนละเคสในแต่ละรอบ ให้รอแล้วรันซ้ำเฉพาะเคสที่พัง
+- **บัญชี CMS ถูกปฏิเสธ**: อย่ารันชุด Login ซ้ำหลายรอบ เพราะมีเคสใส่รหัสผ่านผิดหลายครั้ง เช็กรหัสผ่านใน `config\secrets.local.env` ก่อน
