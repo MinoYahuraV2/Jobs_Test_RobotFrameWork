@@ -227,8 +227,15 @@ Preview Should Show The CV
     ${frame_title}=    Get Element Attribute    ${PF_DIALOG_FRAME}    title
     Should Contain    ${frame_title}    ${profile}[cv]
     ${src}=    Get Element Attribute    ${PF_DIALOG_FRAME}    src
+    ${src}=    Without Viewer Options    ${src}
     ${stored}=    Stored File Name    ${profile}[cv]
     Should End With    ${src}    ${stored}
+
+Without Viewer Options
+    [Documentation]    The frame address may end with a PDF viewer option such as "#zoom=150". It is not part of the file address.
+    [Arguments]    ${url}
+    ${clean}=    Evaluate    $url.split('#')[0]
+    RETURN    ${clean}
 
 Stored File Name
     [Documentation]    The site keeps the file under a cleaned name: spaces and brackets are removed from the web address.
@@ -242,6 +249,8 @@ Preview Download Link Should Match The Frame
     ${src}=    Get Element Attribute    ${PF_DIALOG_FRAME}    src
     ${href}=    Get Element Attribute    ${PF_DIALOG_DOWNLOAD}    href
     ${download}=    Get Element Attribute    ${PF_DIALOG_DOWNLOAD}    download
+    ${src}=    Without Viewer Options    ${src}
+    ${href}=    Without Viewer Options    ${href}
     Should Be Equal    ${href}    ${src}
     Should Be Equal    ${download}    ${profile}[cv]
 
@@ -404,13 +413,17 @@ Tab Order Should Follow The Page
     Set Focus To Element    ${PF_BACK_LINK}
     ${seen}=    Create List
     ${count}=    Get Length    ${PF_TAB_ORDER}
-    FOR    ${i}    IN RANGE    ${count}
+    # One extra stop: an applicant with a history has the history table (a scrollable region) in the Tab order
+    FOR    ${i}    IN RANGE    ${count} + 1
         IF    ${i} > 0
             Press Keys    NONE    TAB
         END
         ${text}=    Execute Javascript    return (document.activeElement.innerText || document.activeElement.getAttribute('aria-label') || '').trim();
-        Append To List    ${seen}    ${text}
+        IF    not $text.startswith('${PF_HISTORY_TABLE_START}')
+            Append To List    ${seen}    ${text}
+        END
     END
+    ${seen}=    Evaluate    $seen[:${count}]
     Lists Should Be Equal    ${seen}    ${PF_TAB_ORDER}
 
 Panel Should Sit Beside The Sections

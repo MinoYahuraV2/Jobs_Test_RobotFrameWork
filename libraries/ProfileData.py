@@ -369,7 +369,8 @@ def repeat_applicants_should_show_history(profiles, what):
     for p in profiles:
         if p.get("missing"):
             continue
-        key = (p["first"].strip().casefold(), p["last"].strip().casefold(), re.sub(r"\D", "", p["phone"]))
+        # Exact match, like the site: "Test TEst" and "Test Test" are NOT the same person
+        key = (p["first"].strip(), p["last"].strip(), re.sub(r"\D", "", p["phone"]))
         groups.setdefault(key, []).append(p)
     pairs = [members for members in groups.values() if len(members) > 1]
     if not pairs:
@@ -391,9 +392,9 @@ def repeat_applicants_should_show_history(profiles, what):
                 if what == "position" and row[1] != other["job"]:
                     problems.append(f"{_who(me)}: history position is '{row[1]}', that application was for '{other['job']}'")
                 elif what == "ai":
-                    shown = row[2].replace(" ", "")
+                    shown = re.sub(r"\s+", "", row[2])
                     ai_cells.append(shown)
-                    wanted = f"{other['ai_label']}Score:{other['ai_score']}".replace(" ", "")
+                    wanted = re.sub(r"\s+", "", f"{other['ai_label']}Score:{other['ai_score']}")
                     if shown != wanted:
                         problems.append(f"{_who(me)}: history AI is '{row[2]}', that application has '{other['ai_label']} / {other['ai_score']}'")
                 elif what == "status" and row[3] != other["status_value"]:
@@ -403,7 +404,8 @@ def repeat_applicants_should_show_history(profiles, what):
     if problems:
         shown = "\n".join(problems[:10])
         more = f"\n... and {len(problems) - 10} more" if len(problems) > 10 else ""
-        raise AssertionError(f"{len(problems)} problem(s) with repeat applicants ({len(pairs)} people applied twice):\n{shown}{more}")
+        seen = f"\nAI cells seen in the history: {sorted(set(ai_cells))}" if what == "ai" else ""
+        raise AssertionError(f"{len(problems)} problem(s) with repeat applicants ({len(pairs)} people applied twice):\n{shown}{more}{seen}")
 
 def pdf_should_be_real(url):
     """Download the first bytes of the file behind the preview; a PDF starts with %PDF."""

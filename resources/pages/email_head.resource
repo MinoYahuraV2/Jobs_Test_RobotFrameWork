@@ -188,6 +188,7 @@ Draft Preview Should Show The CV
     ${frame_title}=    Get Element Attribute    ${ED_DIALOG_FRAME}    title
     Should Contain    ${frame_title}    ${profile}[cv]
     ${src}=    Get Element Attribute    ${ED_DIALOG_FRAME}    src
+    ${src}=    Without Viewer Options    ${src}
     ${stored}=    Stored File Name    ${profile}[cv]
     Should End With    ${src}    ${stored}
 
