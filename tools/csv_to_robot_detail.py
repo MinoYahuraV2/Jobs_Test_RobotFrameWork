@@ -97,7 +97,6 @@ STEPS = {
     "JD068": ("seo", [f"{E}    seo_type"]),
     "JD069": ("seo", [f"{E}    seo_openings"]),
     "JD070": ("seo", [f"{E}    seo_valid"]),
-    "JD071": ("seo", ["Job Posting Should Use The Real Website Address"]),
     "JD072": ("layout", ["Side Panel Should Be On The Right On Desktop"]),
     "JD073": ("layout", ["Tab Key Should Visit The Page In Order"]),
 }

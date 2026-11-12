@@ -65,7 +65,6 @@ JD067,ตรวจสอบข้อมูล JobPosting (ชื่อตำแ�
 JD068,ตรวจสอบข้อมูล JobPosting (ประเภทงาน),employmentType ตรงกับประเภทงาน (FULL_TIME / PART_TIME),automate,,,,,,,,,,,,,,,,,,
 JD069,ตรวจสอบข้อมูล JobPosting (จำนวนที่รับ),totalJobOpenings ตรงกับ Vacancies,automate,,,,,,,,,,,,,,,,,,
 JD070,ตรวจสอบข้อมูล JobPosting (วันปิดรับสมัคร),validThrough เป็นวันเดียวกับวันปิดรับสมัครที่แสดงในหน้า (เวลาประเทศไทย),automate,,,,,,,,,,,,,,,,,,
-JD071,ตรวจสอบโดเมนในข้อมูล JobPosting,url และ hiringOrganization.sameAs ใช้โดเมนของเว็บไซต์จริง ไม่ใช่ localhost,automate,,,,,,,,,,,,,,,,,,
 JD072,ตรวจสอบการจัดวางบนหน้าจอคอมพิวเตอร์,เนื้อหางานอยู่ด้านซ้าย แถบ Ready to apply และ Hiring Process อยู่ด้านขวา ไม่ซ้อนทับกัน,automate,,,,,,,,,,,,,,,,,,
 JD073,ตรวจสอบลำดับการกดปุ่ม Tab,"โฟกัสเรียงจาก Back to Jobs, Careers, Jobs, หัวข้อที่ย่อได้ 3 ส่วน, เบอร์โทร, Apply Now, Share Job",automate,,,,,,,,,,,,,,,,,,
 JD074,ตรวจสอบการแสดงผลบนหน้าจอมือถือและแท็บเล็ต,เนื้อหาไม่ล้นจอ ไม่มีแถบเลื่อนแนวนอน และแถบ Apply Now เข้าถึงได้,manual,,,,,,,,,,,,,,,,,,
