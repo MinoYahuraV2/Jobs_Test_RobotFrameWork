@@ -75,5 +75,7 @@ PF_DRAFT_BACK_TEXT = "กลับไปหน้าโปรไฟล์ผู�
 PF_CANDIDATE_TEMPLATES = ["นัดสัมภาษณ์", "ขอข้อมูลเพิ่มเติม", "แจ้งผ่านการพิจารณา", "แจ้งไม่ผ่านการพิจารณา"]
 
 # Tab order (assumption: the order the page is laid out, left to right, top to bottom)
+# The history table is a Tab stop too (when the applicant has a history). Its text starts with the first column header.
+PF_HISTORY_TABLE_START = "วันที่สมัคร"
 PF_TAB_ORDER = ["กลับไปหน้าจัดการผู้สมัคร", "รายการผู้สมัคร", "บันทึกการอัปเดต", "ค้นหาชื่อเดียวกันเพิ่มเติม",
                 "View PDF"]
